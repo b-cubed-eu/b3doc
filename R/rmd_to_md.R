@@ -26,7 +26,7 @@ rmd_to_md <- function(rmd_file, output_dir) {
     # double backslashes as separator while file.path() uses regular slashes.)
     tempdir <- gsub("\\\\", "/", tempdir())
     input_file <- file.path(tempdir, basename(rmd_file))
-    download.file(
+    utils::download.file(
       rmd_file,
       input_file
     )
