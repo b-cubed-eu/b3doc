@@ -3,7 +3,10 @@ rmd_to_md <- function(rmd_file, output_dir) {
 
   # Set input
   if (grepl("^http", rmd_file)) {
-    input_file <- file.path(tempdir(), basename(rmd_file))
+    # Correct mixed slash and backslash in file path (in Windows tempdir() uses
+    # double backslashes as separator while file.path() uses regular slashes.)
+    tempdir <- gsub("\\\\", "/", tempdir())
+    input_file <- file.path(tempdir, basename(rmd_file))
     download.file(
       rmd_file,
       input_file
