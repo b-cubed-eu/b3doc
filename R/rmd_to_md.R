@@ -40,6 +40,11 @@ rmd_to_md <- function(rmd_file, output_dir) {
   markdown_dir <- file.path("src", "content", "docs", output_dir)
   markdown_file <- file.path(markdown_dir, paste0(md_name, ".md"))
 
+  # Create directory for markdown file
+  if (!dir.exists(markdown_dir)) {
+    dir.create(markdown_dir, recursive = TRUE)
+  }
+
   # Set options
   knitr::opts_knit$set(
     progress = TRUE,
