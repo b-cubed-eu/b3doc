@@ -69,6 +69,12 @@ rmd_to_md <- function(rmd_file, output_dir) {
     output = markdown_file
   )
 
+  # Add the current date to the beginning of the markdown file
+  current_date <- Sys.Date()
+  markdown_content <- readLines(markdown_file)
+  markdown_content <- c(paste0("Last update: ", current_date), "", markdown_content)
+  writeLines(markdown_content, markdown_file)
+
   # TODO: reset knitr opts_knit
 
   # Empty the temporary directory
