@@ -62,6 +62,9 @@ rmd_to_md <- function(rmd_file, output_dir) {
   )
 
   # TODO: reset knitr opts_knit
-  # TODO: empty tempdir
+
+  # Empty the temporary directory
+  unlink(tempdir, recursive = TRUE)
+
   invisible(file)
 }
