@@ -1,22 +1,31 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # b3doc
 
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
+[![Codecov test coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
 [![test-coverage](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
-The goal of b3doc is to …
+The goal of b3doc is to ...
 
 ## Installation
 
-You can install the development version of b3doc from
-[GitHub](https://github.com/) with:
+You can install the development version of b3doc from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
