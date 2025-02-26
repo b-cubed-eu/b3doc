@@ -16,7 +16,7 @@
 #' rmd_to_md(rmd_file, output_dir = "r/gcube")
 #'
 #' # Clean up (don't do this if you want to keep your files)
-#' unlink("my_directory", recursive = TRUE)
+#' unlink("r/gcube", recursive = TRUE)
 rmd_to_md <- function(rmd_file, output_dir) {
   md_name <- gsub(".Rmd$", "", basename(rmd_file))
 
