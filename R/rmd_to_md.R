@@ -1,22 +1,25 @@
 #' Convert external R Markdown to Markdown
 #'
-#' This function converts an R Markdown (.Rmd) file to a Markdown (.md) file. It
-#' can handle both local and remote .Rmd files.
+#' Converts an R Markdown (.Rmd) file to a Markdown (.md) file. Both local and
+#' remote .Rmd files can be handled. The date this function is called upon is
+#' added to the beginning of the Markdown file.
 #'
-#' @param rmd_file Path to the R Markdown file. This can be a local path or a URL.
-#' @param output_dir The output directory where the Markdown file and figures
-#' will be saved.
+#' @param rmd_file Path to the R Markdown file, either a local path or a URL.
+#' @param output_dir The Markdown file is saved in `src/content/docs/output_dir`
+#' and the figures are saved in `public/output_dir`.
 #'
-#' @return Markdown file written do disk.
+#' @return Markdown file and figures written do disk.
 #' @export
 #'
 #' @examples
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #'
-#' rmd_to_md(rmd_file, output_dir = "r/gcube")
+#' output_dir <- "r/gcube"
+#' rmd_to_md(rmd_file, output_dir)
 #'
 #' # Clean up (don't do this if you want to keep your files)
-#' unlink("r/gcube", recursive = TRUE)
+#' unlink(file.path("public", output_dir), recursive = TRUE)
+#' unlink(file.path("src", "content", "docs", output_dir), recursive = TRUE)
 rmd_to_md <- function(rmd_file, output_dir) {
   md_name <- gsub(".Rmd$", "", basename(rmd_file))
 
