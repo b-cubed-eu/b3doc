@@ -50,7 +50,7 @@ rmd_to_md <- function(rmd_file, output_dir) {
   )
   knitr::opts_chunk$set(
     # Subdirectory for figures, default figure/
-    fig.path = paste(md_name, "-"),
+    fig.path = paste0(md_name, "-"),
     # Captions for figures, "" will keep existing, but not create new ones
     fig.cap = ""
   )
