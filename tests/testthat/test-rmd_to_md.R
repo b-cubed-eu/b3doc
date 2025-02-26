@@ -6,9 +6,6 @@ test_that("rmd_to_md() writes .md to a directory", {
   figures_dir <- file.path("public", output_dir)
   markdown_dir <- file.path("src", "content", "docs", output_dir)
 
-  on.exit(unlink(figures_dir, recursive = TRUE))
-  on.exit(unlink(markdown_dir, recursive = TRUE))
-
   rmd_to_md(rmd_file, output_dir)
 
   expect_identical(
@@ -24,4 +21,7 @@ test_that("rmd_to_md() writes .md to a directory", {
     list.files(markdown_dir),
     c("occurrence-process.md")
   )
+
+  unlink("public", recursive = TRUE)
+  unlink("src", recursive = TRUE)
 })
