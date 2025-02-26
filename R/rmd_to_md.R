@@ -7,7 +7,7 @@
 #' @param output_dir The output directory where the Markdown file and figures
 #' will be saved.
 #'
-#' @return
+#' @return Markdown file written do disk.
 #' @export
 #'
 #' @examples
