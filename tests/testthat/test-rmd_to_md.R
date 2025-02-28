@@ -37,8 +37,10 @@ test_that("rmd_to_md() writes figures to a directory", {
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 
   # Add logging for generated files
-  generated_files <- list.files(fig_dir)
-  message("Generated files: ", paste(generated_files, collapse = ", "))
+  generated_md <- list.files(md_dir)
+  message("Generated md: ", paste(md_fig, collapse = ", "))
+  generated_figs <- list.files(fig_dir)
+  message("Generated figures: ", paste(generated_fig, collapse = ", "))
 
   expect_equal(
     list.files(fig_dir),
