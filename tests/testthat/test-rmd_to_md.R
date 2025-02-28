@@ -1,15 +1,17 @@
 test_that("rmd_to_md() writes .md to a directory", {
   skip_if_offline()
   rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-  output_dir <- "r/gcube"
 
-  figures_dir <- file.path("public", output_dir)
-  markdown_dir <- file.path("src", "content", "docs", output_dir)
+  temp_dir <- tempdir()
 
-  rmd_to_md(rmd_file, output_dir)
+  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
+  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
+  fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
+
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 
   expect_identical(
-    list.files(figures_dir),
+    list.files(fig_dir),
     c(
       "occurrence-process-unnamed-chunk-12-1.png",
       "occurrence-process-unnamed-chunk-3-1.png",
@@ -18,10 +20,9 @@ test_that("rmd_to_md() writes .md to a directory", {
       )
     )
   expect_identical(
-    list.files(markdown_dir),
+    list.files(md_dir),
     c("occurrence-process.md")
   )
 
-  unlink("public", recursive = TRUE)
-  unlink("src", recursive = TRUE)
+  unlink(temp_dir, recursive = TRUE)
 })
