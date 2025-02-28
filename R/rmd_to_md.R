@@ -35,8 +35,8 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
       # create subdur in tempdir, so subdir is deleted when unlink is called and
       # not the whole tempdir folder
       tempdir <- paste0(tempdir, "/rmd_file")
+      dir.create(tempdir)
     }
-    dir.create(tempdir)
     input_file <- file.path(tempdir, basename(rmd_file))
     utils::download.file(
       rmd_file,
