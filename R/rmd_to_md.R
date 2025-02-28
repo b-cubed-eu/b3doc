@@ -32,6 +32,8 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
     # double backslashes as separator while file.path() uses regular slashes.)
     tempdir <- gsub("\\\\", "/", tempdir())
     if (dir.exists(tempdir)) {
+      # create subdur in tempdir, so subdir is deleted when unlink is called and
+      # not the whole tempdir folder
       tempdir <- paste0(tempdir, "/rmd_file")
     }
     dir.create(tempdir)
