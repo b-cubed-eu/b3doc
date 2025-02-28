@@ -26,7 +26,7 @@ test_that("rmd_to_md() writes figures to a directory", {
 
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
+  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
 
   # Add logging
   message("Temporary directory: ", temp_dir)
