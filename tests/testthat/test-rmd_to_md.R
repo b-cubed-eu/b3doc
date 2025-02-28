@@ -25,22 +25,30 @@ test_that("rmd_to_md() writes figures to a directory", {
   temp_dir <- tempdir()
 
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
-  fig_dir <- md_dir
+  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
+
+  # Add logging
+  message("Temporary directory: ", temp_dir)
+  message("Markdown directory: ", md_dir)
+  message("Figure directory: ", fig_dir)
+  message("Figure URL directory: ", fig_url_dir)
 
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 
-  expect_identical(
+  # Add logging for generated files
+  generated_files <- list.files(fig_dir)
+  message("Generated files: ", paste(generated_files, collapse = ", "))
+
+  expect_equal(
     list.files(fig_dir),
     c(
       "occurrence-process-unnamed-chunk-12-1.png",
       "occurrence-process-unnamed-chunk-3-1.png",
       "occurrence-process-unnamed-chunk-7-1.png",
-      "occurrence-process-unnamed-chunk-9-1.png",
-      "occurrence-process.md"
+      "occurrence-process-unnamed-chunk-9-1.png"
     )
   )
 
   unlink(temp_dir, recursive = TRUE)
 })
-
