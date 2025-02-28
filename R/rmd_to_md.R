@@ -5,8 +5,10 @@
 #' added to the beginning of the Markdown file.
 #'
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param output_dir The Markdown file is saved in `src/content/docs/output_dir`
-#' and the figures are saved in `public/output_dir`.
+#' @param md_dir Path to local directory to Markdown file to.
+#' @param fig_dir Path to local directory to save figures to.
+#' @param fig_url_dir URL path that will be used to link to the figures in the
+#' markdown output.
 #'
 #' @return Markdown file and figures written do disk.
 #' @export
@@ -14,13 +16,14 @@
 #' @examples
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #'
-#' output_dir <- "r/gcube"
-#' rmd_to_md(rmd_file, output_dir)
+#' md_dir <- file.path("output", "src", "content", "docs", "r", "gcube")
+#' fig_dir <- file.path("output", "public", "r", "gcube")
+#' fig_url_dir <- paste0("/astro-docs/", "r", "gcube", "/")
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 #'
 #' # Clean up (don't do this if you want to keep your files)
-#' unlink(file.path("public", output_dir), recursive = TRUE)
-#' unlink(file.path("src", "content", "docs", output_dir), recursive = TRUE)
-rmd_to_md <- function(rmd_file, output_dir) {
+#' unlink("output", recursive = TRUE)
+rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
   md_name <- gsub(".Rmd$", "", basename(rmd_file))
 
   # Set input
@@ -38,23 +41,20 @@ rmd_to_md <- function(rmd_file, output_dir) {
   }
 
   # Set output
-  figures_dir <- file.path("public", output_dir)
-  figures_dir_url <- paste0("/astro-docs/", output_dir, "/")
-  markdown_dir <- file.path("src", "content", "docs", output_dir)
-  markdown_file <- file.path(markdown_dir, paste0(md_name, ".md"))
+  markdown_file <- file.path(md_dir, paste0(md_name, ".md"))
 
   # Create directory for markdown file
-  if (!dir.exists(markdown_dir)) {
-    dir.create(markdown_dir, recursive = TRUE)
+  if (!dir.exists(md_dir)) {
+    dir.create(md_dir, recursive = TRUE)
   }
 
   # Set options
   knitr::opts_knit$set(
     progress = TRUE,
     # Directory for figures
-    base.dir = figures_dir,
+    base.dir = fig_dir,
     # Path to figures in markdown
-    base.url = figures_dir_url
+    base.url = fig_url_dir
   )
   knitr::opts_chunk$set(
     # Subdirectory for figures, default figure/
