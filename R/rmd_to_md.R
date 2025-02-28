@@ -78,5 +78,5 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
   # TODO: reset knitr opts_knit
 
   # Empty the temporary directory
-  unlink(tempdir, recursive = TRUE)
+  # unlink(tempdir, recursive = TRUE) # Uncomment to make test work
 }
