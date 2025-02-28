@@ -4,26 +4,34 @@
 \alias{rmd_to_md}
 \title{Convert external R Markdown to Markdown}
 \usage{
-rmd_to_md(rmd_file, output_dir)
+rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 }
 \arguments{
-\item{rmd_file}{Path to the R Markdown file. This can be a local path or a URL.}
+\item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
 
-\item{output_dir}{The output directory where the Markdown file and figures
-will be saved.}
+\item{md_dir}{Path to local directory to Markdown file to.}
+
+\item{fig_dir}{Path to local directory to save figures to.}
+
+\item{fig_url_dir}{URL path that will be used to link to the figures in the
+markdown output.}
 }
 \value{
-Markdown file written do disk.
+Markdown file and figures written do disk.
 }
 \description{
-This function converts an R Markdown (.Rmd) file to a Markdown (.md) file. It
-can handle both local and remote .Rmd files.
+Converts an R Markdown (.Rmd) file to a Markdown (.md) file. Both local and
+remote .Rmd files can be handled. The date this function is called upon is
+added to the beginning of the Markdown file.
 }
 \examples{
 rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 
-rmd_to_md(rmd_file, output_dir = "r/gcube")
+md_dir <- file.path("output", "src", "content", "docs", "r", "gcube")
+fig_dir <- file.path("output", "public", "r", "gcube")
+fig_url_dir <- paste0("/astro-docs/", "r", "gcube", "/")
+rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 
 # Clean up (don't do this if you want to keep your files)
-unlink("r/gcube", recursive = TRUE)
+unlink("output", recursive = TRUE)
 }
