@@ -31,6 +31,10 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
     # Correct mixed slash and backslash in file path (in Windows tempdir() uses
     # double backslashes as separator while file.path() uses regular slashes.)
     tempdir <- gsub("\\\\", "/", tempdir())
+    if (dir.exists(tempdir)) {
+      tempdir <- paste0(tempdir, "/rmd_file")
+    }
+    dir.create(tempdir)
     input_file <- file.path(tempdir, basename(rmd_file))
     utils::download.file(
       rmd_file,
@@ -78,5 +82,5 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
   # TODO: reset knitr opts_knit
 
   # Empty the temporary directory
-  # unlink(tempdir, recursive = TRUE) # Uncomment to make test work
+  unlink(tempdir, recursive = TRUE)
 }

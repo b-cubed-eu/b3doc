@@ -2,7 +2,11 @@ test_that("rmd_to_md() writes .md to a directory", {
   skip_if_offline()
   rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 
-  temp_dir <- tempdir()
+  temp_dir <- gsub("\\\\", "/", tempdir())
+  if (dir.exists(temp_dir)) {
+    temp_dir <- paste0(temp_dir, "/test")
+  }
+  dir.create(temp_dir)
 
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
