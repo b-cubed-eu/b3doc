@@ -54,6 +54,9 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
     dir.create(md_dir, recursive = TRUE)
   }
 
+  # Save the original knitting options
+  original_opts_knit <- knitr::opts_knit$get()
+
   # Set options
   knitr::opts_knit$set(
     progress = TRUE,
@@ -81,7 +84,8 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
   markdown_content <- c(paste0("Last update: ", current_date), "", markdown_content)
   writeLines(markdown_content, markdown_file)
 
-  # TODO: reset knitr opts_knit
+  # Reset knitting options to the original settings
+  knitr::opts_knit$set(original_opts_knit)
 
   # Empty the temporary directory
   unlink(tempdir, recursive = TRUE)
