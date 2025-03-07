@@ -16,9 +16,9 @@
 #' @examples
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #'
-#' md_dir <- file.path("output", "src", "content", "docs", "r", "gcube")
-#' fig_dir <- file.path("output", "public", "r", "gcube")
-#' fig_url_dir <- "/astro-docs/r/gcube/"
+#' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
+#' fig_dir <- file.path("output", "public", "software", "gcube")
+#' fig_url_dir <- "/software/gcube/"
 #' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
 #'
 #' # Clean up (don't do this if you want to keep your files)
