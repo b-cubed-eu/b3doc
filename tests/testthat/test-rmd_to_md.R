@@ -54,3 +54,22 @@ test_that("rmd_to_md() writes .md to a directory", {
 #
 #   unlink(temp_dir, recursive = TRUE)
 # })
+
+test_that("rmd_to_md() resets knitting options to the original settings", {
+  skip_if_offline()
+  rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
+
+  temp_dir <- tempdir()
+
+  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
+  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
+  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
+
+  original_opts_knit <- knitr::opts_knit$get()
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+  new_opts_knit <- knitr::opts_knit$get()
+
+  expect_identical(original_opts_knit, new_opts_knit)
+
+  unlink(temp_dir, recursive = TRUE)
+})
