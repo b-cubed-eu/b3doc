@@ -8,7 +8,7 @@ test_that("rmd_to_md() writes .md to a directory", {
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
 
   expect_identical(
     list.files(md_dir),
@@ -66,7 +66,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
 
   original_opts_knit <- knitr::opts_knit$get()
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
   new_opts_knit <- knitr::opts_knit$get()
 
   expect_identical(original_opts_knit, new_opts_knit)
@@ -84,7 +84,7 @@ test_that("rmd_to_md() adds the current date to the beginning of the markdown fi
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
 
   md_file <- file.path(md_dir, "occurrence-process.md")
   md_content <- readLines(md_file)
