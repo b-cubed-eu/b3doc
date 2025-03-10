@@ -51,7 +51,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   }
 
   # Set output
-  markdown_file <- fs::path_ext_set(
+  md_file_path <- fs::path_ext_set(
     path = fs::path(md_dir, md_name),
     ext = ".md")
 
