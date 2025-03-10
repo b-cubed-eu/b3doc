@@ -29,7 +29,7 @@ update_frontmatter <- function(file_path, original_file_path, order) {
 
   # Update front matter
   frontmatter$lastUpdated <- format(Sys.time(), "%Y-%M-%d")
-  frontmatter$order <- order
+  frontmatter$sidebar$order <- order
   frontmatter$source <- original_file_path
   new_frontmatter <- yaml::as.yaml(frontmatter)
 
