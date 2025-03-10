@@ -35,6 +35,8 @@ update_frontmatter <- function(md_file_path, rmd_file, order) {
   frontmatter$sidebar$order <- order
   frontmatter$source <- rmd_file
   new_frontmatter <- yaml::as.yaml(frontmatter)
+  # as.yaml() converts the date to a string with quotes; remove quotes
+  new_frontmatter <- gsub("lastUpdated: '(.*)'", "lastUpdated: \\1", new_frontmatter)
 
   # Write front matter
   updated_lines <- c(
