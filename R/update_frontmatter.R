@@ -4,7 +4,7 @@
 #'
 #' @param md_file_path Path to the markdown file on disk.
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param order Order of the article in the menu.
+#' @param order Number indicating the order of the article in the menu.
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
 #' @examples
@@ -16,8 +16,27 @@
 #' order <- 1
 #' update_frontmatter(md_file_path, rmd_file, order)
 update_frontmatter <- function(md_file_path, rmd_file, order) {
-  # Check that the required arguments are present
-  if (missing(order)) {stop("The 'order' argument is required.")}
+  if (!is.numeric(order)) {
+    cli::cli_warn(
+      c(
+        "{.arg order} must be a number with maximum 1 decimal."
+      ),
+      class = "b3doc_error_order_invalid"
+    )
+  }
+
+  decimal_part <- strsplit(as.character(order), split = "\\.")[[1]][2]
+  if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
+    cli::cli_warn(
+      c(
+        "{.arg order} must be a number with maximum 1 decimal."
+      ),
+      class = "b3doc_error_order_invalid"
+    )
+  }
+
+  # check length after decimal
+  length(order)
 
   # Transform original file path from raw to edit mode
   rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
