@@ -9,12 +9,12 @@
 #' @noRd
 #' @examples
 #' file_path <- here::here("output", "src", "content", "docs", "software", "gcube", "occurrence-process.md")
-#' rmd_file <- "https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd"
-#' order = 1
-#' update_frontmatter(file_path, rmd_file, order)
+#' original_file_path <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
+#' order <- 1
+#' update_frontmatter(file_path, original_file_path, order)
 update_frontmatter <- function(file_path, original_file_path, order) {
   # Check that the required arguments are present
-  if(missing(order)){stop("The 'order' argument is required.")}
+  if (missing(order)) {stop("The 'order' argument is required.")}
 
   # Transform original file path from raw to edit mode
   original_file_path <- gsub("raw.githubusercontent.com", "github.com", original_file_path)
