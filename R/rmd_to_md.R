@@ -29,21 +29,24 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
 
   # Set input
   if (R.utils::isUrl(rmd_file)) {
-    # Correct mixed slash and backslash in file path (in Windows tempdir() uses
-    # double backslashes as separator while file.path() uses regular slashes.)
-    temp_dir <- gsub("\\\\", "/", tempdir())
-    if (dir.exists(tempdir)) {
-      # create subdur in tempdir, so subdir is deleted when unlink is called and
-      # not the whole tempdir folder
-      tempdir <- paste0(tempdir, "/rmd_file")
-      dir.create(tempdir)
-    }
-    input_file <- file.path(tempdir, basename(rmd_file))
-    utils::download.file(
-      rmd_file,
-      input_file
+    # Store the rmd_file in a subdir of the OS tempdir
+    temp_dir <- file.path(tempdir(), "rmd_file")
+    # Create the temp_dir if it doesn't exist from an earlier run
+    if(!dir.exists(temp_dir)){dir.create(temp_dir)}
+    temp_file <- tempfile(
+      basename(
+        tools::file_path_sans_ext(rmd_file)
+      ),
+      fileext = ".Rmd"
     )
+
+    utils::download.file(rmd_file,
+                         temp_file)
+
+    input_file <- temp_file
+
   } else {
+    # The file is local.
     input_file <- rmd_file
   }
 
@@ -90,5 +93,5 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   knitr::opts_knit$set(original_opts_knit)
 
   # Empty the temporary directory
-  unlink(tempdir, recursive = TRUE)
+  unlink(temp_dir, recursive = TRUE)
 }
