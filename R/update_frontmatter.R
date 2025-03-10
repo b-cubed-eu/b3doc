@@ -35,9 +35,6 @@ update_frontmatter <- function(md_file_path, rmd_file, order) {
     )
   }
 
-  # check length after decimal
-  length(order)
-
   # Transform original file path from raw to edit mode
   rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
   rmd_file <- gsub("/refs/heads/", "/blob/", rmd_file)
