@@ -1,3 +1,17 @@
+#' Update front matter
+#'
+#' Updates the front matter of a markdown file on disk.
+#'
+#' @param file_path Path to the markdown file on disk.
+#' @param original_file_path URL of the R Markdown file, either a local path or a URL.
+#' @param order Order of the article in the menu.
+#' @return Markdown file with updated front matter, written to disk.
+#' @noRd
+#' @examples
+#' file_path <- here::here("output", "src", "content", "docs", "software", "gcube", "occurrence-process.md")
+#' rmd_file <- "https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd"
+#' order = 1
+#' update_frontmatter(file_path, rmd_file, order)
 update_frontmatter <- function(file_path, original_file_path, order) {
   # Check that the required arguments are present
   if(missing(order)){stop("The 'order' argument is required.")}
