@@ -9,7 +9,8 @@ rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 \arguments{
 \item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
 
-\item{md_dir}{Path to local directory to Markdown file to.}
+\item{md_dir}{Path to local directory to Markdown file to. If it doesn't
+exist it will be created.}
 
 \item{fig_dir}{Path to local directory to save figures to.}
 
@@ -32,7 +33,8 @@ rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/
 md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 fig_dir <- file.path("output", "public", "software", "gcube")
 fig_url_dir <- "/software/gcube/"
-rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
+order <- 1
+rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 
 # Clean up (don't do this if you want to keep your files)
 unlink("output", recursive = TRUE)

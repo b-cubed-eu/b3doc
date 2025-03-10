@@ -5,10 +5,11 @@
 #' added to the beginning of the Markdown file.
 #'
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param md_dir Path to local directory to save Markdown file to.
+#' @param md_dir Path to local directory to Markdown file to. If it doesn't
+#'   exist it will be created.
 #' @param fig_dir Path to local directory to save figures to.
 #' @param fig_url_dir URL path that will be used to link to the figures in the
-#' markdown output.
+#'   markdown output.
 #' @param order Order of the article in the menu.
 #'
 #' @return Markdown file and figures written do disk.
@@ -26,34 +27,37 @@
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
 rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
-  md_name <- gsub(".Rmd$", "", basename(rmd_file))
+  # Get the basename of the input rmd_file without extension.
+  md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
 
   # Set input
-  if (grepl("^http", rmd_file)) {
-    # Correct mixed slash and backslash in file path (in Windows tempdir() uses
-    # double backslashes as separator while file.path() uses regular slashes).
-    tempdir <- gsub("\\\\", "/", tempdir())
-    if (dir.exists(tempdir)) {
-      # create subdir in tempdir, so subdir is deleted when unlink is called and
-      # not the whole tempdir folder
-      tempdir <- paste0(tempdir, "/rmd_file")
-      dir.create(tempdir)
-    }
-    input_file <- file.path(tempdir, basename(rmd_file))
-    utils::download.file(
-      rmd_file,
-      input_file
-    )
+  if (R.utils::isUrl(rmd_file)) {
+    # Store the rmd_file in a subdir of the OS tempdir
+    temp_dir <- fs::path_temp("rmd_file")
+    # Create the temp_dir if it doesn't exist from an earlier run
+    if(!fs::dir_exists(temp_dir)){fs::dir_create(temp_dir)}
+    temp_rmd_path <-
+      fs::file_temp(pattern = md_name,
+                    tmp_dir = temp_dir,
+                    ext = ".Rmd")
+
+    utils::download.file(rmd_file,
+                         temp_rmd_path)
+
+    input_file <- temp_rmd_path
   } else {
+    # The file is local.
     input_file <- rmd_file
   }
 
   # Set output
-  md_file_path <- file.path(md_dir, paste0(md_name, ".md"))
+  md_file_path <- fs::path_ext_set(
+    path = fs::path(md_dir, md_name),
+    ext = ".md")
 
   # Create directory for markdown file
-  if (!dir.exists(md_dir)) {
-    dir.create(md_dir, recursive = TRUE)
+  if (!fs::dir_exists(md_dir)) {
+    fs::dir_create(md_dir, recurse = TRUE)
   }
 
   # Save the original knitting options
@@ -90,6 +94,6 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   # Reset knitting options to the original settings
   knitr::opts_knit$set(original_opts_knit)
 
-  # Empty the temporary directory
-  unlink(tempdir, recursive = TRUE)
+  # Empty the temporary directory and it's contents
+  fs::dir_delete(temp_dir)
 }
