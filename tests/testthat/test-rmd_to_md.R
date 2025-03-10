@@ -30,19 +30,7 @@ test_that("rmd_to_md() writes figures to a directory", {
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
   order <- 1
 
-  # Add logging
-  message("Temporary directory: ", temp_dir)
-  message("Markdown directory: ", md_dir)
-  message("Figure directory: ", fig_dir)
-  message("Figure URL directory: ", fig_url_dir)
-
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
-
-  # Add logging for generated files
-  generated_md <- list.files(md_dir)
-  message("Generated md: ", paste(md_dir, collapse = ", "))
-  generated_fig <- list.files(fig_dir)
-  message("Generated figures: ", paste(generated_fig, collapse = ", "))
 
   expect_equal(
     list.files(fig_dir),
