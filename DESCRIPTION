@@ -21,6 +21,7 @@ Imports:
     R.utils,
     rmarkdown,
     utils
+    yaml
 Suggests: 
     curl,
     testthat (>= 3.0.0)
