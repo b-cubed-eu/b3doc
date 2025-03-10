@@ -9,6 +9,7 @@
 #' @param fig_dir Path to local directory to save figures to.
 #' @param fig_url_dir URL path that will be used to link to the figures in the
 #' markdown output.
+#' @param order Order of the article in the menu.
 #'
 #' @return Markdown file and figures written do disk.
 #' @export
@@ -19,11 +20,11 @@
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
-rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
+rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   md_name <- gsub(".Rmd$", "", basename(rmd_file))
 
   # Set input
@@ -78,11 +79,12 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir) {
     output = markdown_file
   )
 
-  # Add the current date to the beginning of the markdown file
-  current_date <- Sys.Date()
-  markdown_content <- readLines(markdown_file)
-  markdown_content <- c(paste0("Last update: ", current_date), "", markdown_content)
-  writeLines(markdown_content, markdown_file)
+  # Update front matter
+  update_frontmatter(
+    markdown_file,
+    rmd_file,
+    order = order
+  )
 
   # Reset knitting options to the original settings
   knitr::opts_knit$set(original_opts_knit)
