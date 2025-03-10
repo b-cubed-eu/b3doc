@@ -8,7 +8,10 @@
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
 #' @examples
-#' md_file_path <- here::here("output", "src", "content", "docs", "software", "gcube", "occurrence-process.md")
+#' md_file_path <- here::here(
+#' "output", "src", "content", "docs", "software", "gcube",
+#' "occurrence-process.md"
+#' )
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #' order <- 1
 #' update_frontmatter(md_file_path, rmd_file, order)
