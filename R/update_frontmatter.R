@@ -29,8 +29,8 @@ update_frontmatter <- function(file_path, original_file_path, order) {
 
   # Update front matter
   frontmatter$lastUpdated <- format(Sys.time(), "%Y-%M-%d")
-  frontmatter$comment <- paste0("This file is generated from ", original_file_path, ". Please edit that file.")
   frontmatter$order <- order
+  frontmatter$source <- original_file_path
   new_frontmatter <- yaml::as.yaml(frontmatter)
 
   # Write front matter
