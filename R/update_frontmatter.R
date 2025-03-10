@@ -1,4 +1,6 @@
 update_frontmatter <- function(file_path, original_file_path, order) {
+  # Check that the required arguments are present
+  if(missing(order)){stop("The 'order' argument is required.")}
 
   # Transform original file path from raw to edit mode
   original_file_path <- gsub("raw.githubusercontent.com", "github.com", original_file_path)
