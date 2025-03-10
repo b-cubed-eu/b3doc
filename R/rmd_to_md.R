@@ -5,7 +5,7 @@
 #' added to the beginning of the Markdown file.
 #'
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param md_dir Path to local directory to Markdown file to.
+#' @param md_dir Path to local directory to save Markdown file to.
 #' @param fig_dir Path to local directory to save figures to.
 #' @param fig_url_dir URL path that will be used to link to the figures in the
 #' markdown output.
@@ -20,7 +20,8 @@
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
+#' order <- 1
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
@@ -30,10 +31,10 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   # Set input
   if (grepl("^http", rmd_file)) {
     # Correct mixed slash and backslash in file path (in Windows tempdir() uses
-    # double backslashes as separator while file.path() uses regular slashes.)
+    # double backslashes as separator while file.path() uses regular slashes).
     tempdir <- gsub("\\\\", "/", tempdir())
     if (dir.exists(tempdir)) {
-      # create subdur in tempdir, so subdir is deleted when unlink is called and
+      # create subdir in tempdir, so subdir is deleted when unlink is called and
       # not the whole tempdir folder
       tempdir <- paste0(tempdir, "/rmd_file")
       dir.create(tempdir)
@@ -48,7 +49,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   }
 
   # Set output
-  markdown_file <- file.path(md_dir, paste0(md_name, ".md"))
+  md_file_path <- file.path(md_dir, paste0(md_name, ".md"))
 
   # Create directory for markdown file
   if (!dir.exists(md_dir)) {
@@ -76,12 +77,12 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   # Knit
   knitr::knit(
     input = input_file,
-    output = markdown_file
+    output = md_file_path
   )
 
   # Update front matter
   update_frontmatter(
-    markdown_file,
+    md_file_path,
     rmd_file,
     order = order
   )
