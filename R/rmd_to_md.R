@@ -35,7 +35,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
     # Store the rmd_file in a subdir of the OS tempdir
     temp_dir <- fs::path_temp("rmd_file")
     # Create the temp_dir if it doesn't exist from an earlier run
-    if(!fs::dir_exists(temp_dir)){fs::dir_create(temp_dir)}
+    if (!fs::dir_exists(temp_dir)) {fs::dir_create(temp_dir)}
     temp_rmd_path <-
       fs::file_temp(pattern = md_name,
                     tmp_dir = temp_dir,
