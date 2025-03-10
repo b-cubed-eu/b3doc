@@ -20,7 +20,6 @@ Imports:
     fs,
     knitr,
     R.utils,
-    tools,
     utils,
     yaml
 Suggests: 
