@@ -19,11 +19,11 @@ RoxygenNote: 7.3.2
 Imports: 
     knitr,
     R.utils,
-    rmarkdown,
     tools,
     utils,
     yaml
 Suggests: 
     curl,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
