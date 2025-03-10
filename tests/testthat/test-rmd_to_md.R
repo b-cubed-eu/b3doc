@@ -67,7 +67,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   unlink(temp_dir, recursive = TRUE)
 })
 
-test_that("rmd_to_md() adds the current date to the beginning of the markdown file", {
+test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   skip_if_offline()
   rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 
@@ -85,6 +85,14 @@ test_that("rmd_to_md() adds the current date to the beginning of the markdown fi
   expect_identical(
     rmarkdown::yaml_front_matter(md_file)$lastUpdated,
     format(Sys.time(), "%Y-%m-%d")
+  )
+  expect_identical(
+    rmarkdown::yaml_front_matter(md_file)$sidebar$order,
+    1.0
+  )
+  expect_identical(
+    rmarkdown::yaml_front_matter(md_file)$source,
+    "https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd"
   )
 
   unlink(temp_dir, recursive = TRUE)
