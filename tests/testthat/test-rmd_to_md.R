@@ -87,10 +87,11 @@ test_that("rmd_to_md() adds the current date to the beginning of the markdown fi
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
 
   md_file <- file.path(md_dir, "occurrence-process.md")
-  md_content <- readLines(md_file)
-  expected_line <- paste0("Last update: ", Sys.Date())
 
-  expect_true(grepl(expected_line, md_content[1]))
+  expect_identical(
+    rmarkdown::yaml_front_matter(md_file)$lastUpdated,
+    Sys.Date()
+  )
 
   unlink(temp_dir, recursive = TRUE)
 })
