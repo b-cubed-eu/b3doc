@@ -31,7 +31,7 @@ update_frontmatter <- function(md_file_path, rmd_file, order) {
   frontmatter <- yaml::yaml.load(frontmatter_char)
 
   # Update front matter
-  frontmatter$lastUpdated <- format(Sys.time(), "%Y-%M-%d")
+  frontmatter$lastUpdated <- format(Sys.time(), "%Y-%m-%d")
   frontmatter$sidebar$order <- order
   frontmatter$source <- rmd_file
   new_frontmatter <- yaml::as.yaml(frontmatter)

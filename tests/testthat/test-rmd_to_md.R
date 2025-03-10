@@ -96,7 +96,7 @@ test_that("rmd_to_md() adds the current date to the beginning of the markdown fi
 
   expect_identical(
     rmarkdown::yaml_front_matter(md_file)$lastUpdated,
-    format(Sys.time(), "%Y-%M-%d")
+    format(Sys.time(), "%Y-%m-%d")
   )
 
   unlink(temp_dir, recursive = TRUE)
