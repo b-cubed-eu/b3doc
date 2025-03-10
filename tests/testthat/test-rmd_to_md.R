@@ -7,6 +7,7 @@ test_that("rmd_to_md() writes .md to a directory", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
+  order <- 1
 
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
 
@@ -27,6 +28,7 @@ test_that("rmd_to_md() writes .md to a directory", {
 #   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
 #   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
 #   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
+#   order <- 1
 #
 #   # Add logging
 #   message("Temporary directory: ", temp_dir)
@@ -34,7 +36,7 @@ test_that("rmd_to_md() writes .md to a directory", {
 #   message("Figure directory: ", fig_dir)
 #   message("Figure URL directory: ", fig_url_dir)
 #
-#   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir)
+#   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 #
 #   # Add logging for generated files
 #   generated_md <- list.files(md_dir)
@@ -66,7 +68,9 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
 
   original_opts_knit <- knitr::opts_knit$get()
+  
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
+
   new_opts_knit <- knitr::opts_knit$get()
 
   expect_identical(original_opts_knit, new_opts_knit)

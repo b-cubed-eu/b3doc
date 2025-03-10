@@ -21,7 +21,8 @@
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = 1)
+#' order <- 1
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
@@ -44,7 +45,6 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
                          temp_rmd_path)
 
     input_file <- temp_rmd_path
-
   } else {
     # The file is local.
     input_file <- rmd_file
@@ -54,6 +54,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   markdown_file <- fs::path_ext_set(
     path = fs::path(md_dir, md_name),
     ext = ".md")
+
   # Create directory for markdown file
   if (!fs::dir_exists(md_dir)) {
     fs::dir_create(md_dir, recurse = TRUE)
@@ -80,12 +81,12 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   # Knit
   knitr::knit(
     input = input_file,
-    output = markdown_file
+    output = md_file_path
   )
 
   # Update front matter
   update_frontmatter(
-    markdown_file,
+    md_file_path,
     rmd_file,
     order = order
   )
