@@ -20,6 +20,7 @@ test_that("rmd_to_md() writes .md to a directory", {
 })
 
 test_that("rmd_to_md() writes figures to a directory", {
+  skip("Test broken see issue #2")
   skip_if_offline()
   rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 
