@@ -78,8 +78,9 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   fig_dir <- file.path(temp_dir, "public", "r", "gcube")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
   order <- 1
+  title <- "blah"
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order, title)
 
   md_file <- file.path(md_dir, "occurrence-process.md")
 

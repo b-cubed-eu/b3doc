@@ -5,6 +5,7 @@
 #' @param md_file_path Path to the markdown file on disk.
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
 #' @param order Number indicating the order of the article in the menu.
+#' @param title Title of the article, to show in the menu.
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
 #' @examples
@@ -13,9 +14,12 @@
 #' "occurrence-process.md"
 #' )
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-#' order <- 1
-#' update_frontmatter(md_file_path, rmd_file, order)
-update_frontmatter <- function(md_file_path, rmd_file, order) {
+#' title <- "2. Occurrence process"
+#' order <- 2
+#' update_frontmatter(md_file_path, rmd_file, order, title)
+update_frontmatter <- function(
+    md_file_path, rmd_file, order = NULL, title = NULL
+    ) {
   if (!is.numeric(order)) {
     cli::cli_warn(
       c(
@@ -47,8 +51,9 @@ update_frontmatter <- function(md_file_path, rmd_file, order) {
   frontmatter <- yaml::yaml.load(frontmatter_char)
 
   # Update front matter
+  if (!is.null(title)) {frontmatter$title <- title}
   frontmatter$lastUpdated <- format(Sys.time(), "%Y-%m-%d")
-  frontmatter$sidebar$order <- order
+  if (!is.null(order)) {frontmatter$sidebar$order <- order}
   frontmatter$source <- rmd_file
   new_frontmatter <- yaml::as.yaml(frontmatter)
   # as.yaml() converts the date to a string with quotes; remove quotes

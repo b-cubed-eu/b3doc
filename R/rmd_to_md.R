@@ -11,6 +11,7 @@
 #' @param fig_url_dir URL path that will be used to link to the figures in the
 #'   markdown output.
 #' @param order Order of the article in the menu.
+#' @param title Title of the article, to show in the menu.
 #'
 #' @return Markdown file and figures written do disk.
 #' @export
@@ -21,12 +22,14 @@
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
-#' order <- 1
+#' order <- 2
 #' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
-rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
+rmd_to_md <- function(
+    rmd_file, md_dir, fig_dir, fig_url_dir, order = NULL, title = NULL
+    ) {
   # Get the basename of the input rmd_file without extension.
   md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
 
