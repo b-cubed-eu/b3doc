@@ -20,7 +20,6 @@ test_that("rmd_to_md() writes .md to a directory", {
 })
 
 test_that("rmd_to_md() writes figures to a directory", {
-  skip("Test broken see issue #2")
   skip_if_offline()
   rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 
@@ -36,11 +35,18 @@ test_that("rmd_to_md() writes figures to a directory", {
   expect_equal(
     list.files(fig_dir),
     c(
+      "occurrence-process-named-1.png",
       "occurrence-process-unnamed-chunk-12-1.png",
+      "occurrence-process-unnamed-chunk-15-1.png",
+      "occurrence-process-unnamed-chunk-17-1.png",
+      "occurrence-process-unnamed-chunk-19-1.png",
+      "occurrence-process-unnamed-chunk-21-1.png",
+      "occurrence-process-unnamed-chunk-24-1.png",
+      "occurrence-process-unnamed-chunk-25-1.png",
       "occurrence-process-unnamed-chunk-3-1.png",
       "occurrence-process-unnamed-chunk-7-1.png",
       "occurrence-process-unnamed-chunk-9-1.png"
-    )
+      )
   )
 
   unlink(temp_dir, recursive = TRUE)

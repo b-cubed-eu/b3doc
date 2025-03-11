@@ -81,6 +81,9 @@ rmd_to_md <- function(
     fig.cap = ""
   )
 
+  # Install required packages
+  install_required_packages(input_file)
+
   # Knit
   knitr::knit(
     input = input_file,
