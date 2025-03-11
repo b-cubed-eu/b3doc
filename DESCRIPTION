@@ -3,10 +3,12 @@ Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Date: 2025-02-26
 Authors@R: c(
-    person("Sanne", "Govaert", , "sanne.govaert@inbo.be", role = "aut",
+    person("Sanne", "Govaert", , "sanne.govaert@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8939-1305", affiliation = "Research Institute for Nature and Forest (INBO)")),
-    person("Peter", "Desmet", , "peter.desmet@inbo.be", role = c("aut", "cre"),
+    person("Peter", "Desmet", , "peter.desmet@inbo.be", role = c("aut"),
            comment = c(ORCID = "0000-0002-8442-8025", affiliation = "Research Institute for Nature and Forest (INBO)")),
+    person("Pieter", "Huybrechts", , "pieter.huybrechts@inbo.be", role = c("aut"),
+           comment = c(ORCID = "0000-0002-6658-6062", affiliation = "Research Institute for Nature and Forest (INBO)")),
     person("Research Institute for Nature and Forest (INBO)", role = "cph",
            comment = "https://www.vlaanderen.be/inbo/en-gb/")
   )
