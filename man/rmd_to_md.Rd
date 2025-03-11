@@ -4,7 +4,7 @@
 \alias{rmd_to_md}
 \title{Convert external R Markdown to Markdown}
 \usage{
-rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order = NULL, title = NULL)
 }
 \arguments{
 \item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
@@ -18,6 +18,8 @@ exist it will be created.}
 markdown output.}
 
 \item{order}{Order of the article in the menu.}
+
+\item{title}{Title of the article, to show in the menu.}
 }
 \value{
 Markdown file and figures written do disk.
@@ -33,7 +35,11 @@ rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/
 md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 fig_dir <- file.path("output", "public", "software", "gcube")
 fig_url_dir <- "/software/gcube/"
-order <- 1
+order <- 2
+
+# Install and update required packages loaded in the Rmd file
+install_required_packages(rmd_file)
+# Convert Rmd to md
 rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 
 # Clean up (don't do this if you want to keep your files)
