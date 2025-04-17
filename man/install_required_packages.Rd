@@ -13,5 +13,6 @@ install_required_packages(input_file)
 A character vector with the names of the packages used
 }
 \description{
-Installs or updates the packages used in an R Markdown file.
+Installs or updates the packages used in an R Markdown file with \code{library()}
+and \code{require()} calls.
 }

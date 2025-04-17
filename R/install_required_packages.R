@@ -1,6 +1,7 @@
 #' Install required packages
 #'
-#' Installs or updates the packages used in an R Markdown file.
+#' Installs or updates the packages used in an R Markdown file with `library()`
+#' and `require()` calls.
 #'
 #' @param input_file Path to the R Markdown file
 #'
