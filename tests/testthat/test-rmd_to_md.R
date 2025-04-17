@@ -10,6 +10,7 @@ test_that("rmd_to_md() writes .md to a directory", {
   order <- 1
 
   install_required_packages(rmd_file)
+  utils::install.packages("class")
   install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
 
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
@@ -34,6 +35,7 @@ test_that("rmd_to_md() writes figures to a directory", {
   order <- 1
 
   install_required_packages(rmd_file)
+  utils::install.packages("class")
   install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 
@@ -71,6 +73,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   original_opts_knit <- knitr::opts_knit$get()
 
   install_required_packages(rmd_file)
+  utils::install.packages("class")
   install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 
@@ -94,6 +97,7 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   title <- "blah"
 
   install_required_packages(rmd_file)
+  utils::install.packages("class")
   install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
   rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order, title)
 
