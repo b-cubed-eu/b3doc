@@ -52,6 +52,9 @@ rmd_to_md <- function(
                          temp_rmd_path)
 
     input_file <- temp_rmd_path
+
+    # Empty the temporary directory and it's contents
+    fs::dir_delete(temp_dir)
   } else {
     # The file is local.
     input_file <- rmd_file
@@ -100,7 +103,4 @@ rmd_to_md <- function(
 
   # Reset knitting options to the original settings
   knitr::opts_knit$set(original_opts_knit)
-
-  # Empty the temporary directory and it's contents
-  fs::dir_delete(temp_dir)
 }
