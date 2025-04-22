@@ -4,7 +4,8 @@
 #'
 #' @param md_file_path Path to the markdown file on disk.
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param order Number indicating the order of the article in the menu.
+#' @param sidebar_order Number indicating the order of the article in the
+#' sidebar.
 #' @param title Title of the article, to show in the menu.
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
@@ -16,26 +17,26 @@
 #' )
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #' title <- "2. Occurrence process"
-#' order <- 2
-#' update_frontmatter(md_file_path, rmd_file, order, title)
+#' sidebar_order <- 2
+#' update_frontmatter(md_file_path, rmd_file, sidebar_order, title)
 #' }
 update_frontmatter <- function(
-    md_file_path, rmd_file, order = NULL, title = NULL
+    md_file_path, rmd_file, sidebar_order = NULL, title = NULL
     ) {
-  if (!is.numeric(order)) {
+  if (!is.numeric(sidebar_order)) {
     cli::cli_warn(
       c(
-        "{.arg order} must be a number with maximum 1 decimal."
+        "{.arg sidebar_order} must be a number with maximum 1 decimal."
       ),
       class = "b3doc_error_order_invalid"
     )
   }
 
-  decimal_part <- strsplit(as.character(order), split = "\\.")[[1]][2]
+  decimal_part <- strsplit(as.character(sidebar_order), split = "\\.")[[1]][2]
   if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
     cli::cli_warn(
       c(
-        "{.arg order} must be a number with maximum 1 decimal."
+        "{.arg sidebar_order} must be a number with maximum 1 decimal."
       ),
       class = "b3doc_error_order_invalid"
     )
@@ -55,7 +56,7 @@ update_frontmatter <- function(
   # Update front matter
   if (!is.null(title)) {frontmatter$title <- title}
   frontmatter$lastUpdated <- format(Sys.time(), "%Y-%m-%d")
-  if (!is.null(order)) {frontmatter$sidebar$order <- order}
+  if (!is.null(sidebar_order)) {frontmatter$sidebar$order <- sidebar_order}
   frontmatter$source <- rmd_file
   new_frontmatter <- yaml::as.yaml(frontmatter)
   # as.yaml() converts the date to a string with quotes; remove quotes
