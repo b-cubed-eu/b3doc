@@ -8,7 +8,6 @@
 #' @param sidebar_order Number indicating the order of the article in the
 #' sidebar.
 #' @return Markdown file with updated front matter, written to disk.
-#' @noRd
 #' @examples
 #' \dontrun{
 #' md_file_path <- here::here(
