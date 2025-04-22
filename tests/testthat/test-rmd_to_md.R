@@ -7,9 +7,10 @@ test_that("rmd_to_md() writes .md to a directory", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  order <- 1
+  title = "1. Exploring the Iris Dataset"
+  sidebar_order <- 1
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
 
   expect_identical(
     list.files(md_dir),
@@ -28,9 +29,10 @@ test_that("rmd_to_md() writes figures to a directory", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  order <- 1
+  title = "1. Exploring the Iris Dataset"
+  sidebar_order <- 1
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
 
   expect_equal(
     list.files(fig_dir),
@@ -49,11 +51,12 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  order <- 1
+  title = "1. Exploring the Iris Dataset"
+  sidebar_order <- 1
 
   original_opts_knit <- knitr::opts_knit$get()
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
 
   new_opts_knit <- knitr::opts_knit$get()
 
@@ -71,10 +74,10 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  order <- 1
   title <- "blah"
+  sidebar_order <- 1
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order, title)
+  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
 
   md_file <- file.path(md_dir, "example.md")
 
