@@ -4,9 +4,9 @@
 #'
 #' @param md_file_path Path to the markdown file on disk.
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
+#' @param title Title of the article, to show in the menu.
 #' @param sidebar_order Number indicating the order of the article in the
 #' sidebar.
-#' @param title Title of the article, to show in the menu.
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
 #' @examples
@@ -18,10 +18,10 @@
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #' title <- "2. Occurrence process"
 #' sidebar_order <- 2
-#' update_frontmatter(md_file_path, rmd_file, sidebar_order, title)
+#' update_frontmatter(md_file_path, rmd_file, title, sidebar_order)
 #' }
 update_frontmatter <- function(
-    md_file_path, rmd_file, sidebar_order = NULL, title = NULL
+    md_file_path, rmd_file, title = NULL, sidebar_order = NULL
     ) {
   if (!is.numeric(sidebar_order)) {
     cli::cli_warn(

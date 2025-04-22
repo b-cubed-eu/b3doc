@@ -10,8 +10,8 @@
 #' @param fig_dir Path to local directory to save figures to.
 #' @param fig_url_dir URL path that will be used to link to the figures in the
 #'   markdown output.
-#' @param sidebar_order Order of the article in the sidebar.
 #' @param title Title of the article, to show in the menu.
+#' @param sidebar_order Order of the article in the sidebar.
 #'
 #' @return Markdown file and figures written do disk.
 #' @export
@@ -23,18 +23,18 @@
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
-#' sidebar_order <- 2
 #' title <- "2. Occurrence process"
+#' sidebar_order <- 2
 #'
 #' # Don't forget to install (and update) required packages loaded in the Rmd file
 #' # Convert Rmd to md
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, sidebar_order)
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
 #' }
 rmd_to_md <- function(
-    rmd_file, md_dir, fig_dir, fig_url_dir, sidebar_order = NULL, title = NULL
+    rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL, sidebar_order = NULL
     ) {
   # Get the basename of the input rmd_file without extension.
   md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
@@ -98,8 +98,8 @@ rmd_to_md <- function(
   update_frontmatter(
     md_file_path,
     rmd_file,
-    sidebar_order = sidebar_order,
-    title = title
+    title = title,
+    sidebar_order = sidebar_order
   )
 
   # Reset knitting options to the original settings
