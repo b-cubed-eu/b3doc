@@ -9,6 +9,7 @@
 #' @return Markdown file with updated front matter, written to disk.
 #' @noRd
 #' @examples
+#' \dontrun{
 #' md_file_path <- here::here(
 #' "output", "src", "content", "docs", "software", "gcube",
 #' "occurrence-process.md"
@@ -17,6 +18,7 @@
 #' title <- "2. Occurrence process"
 #' order <- 2
 #' update_frontmatter(md_file_path, rmd_file, order, title)
+#' }
 update_frontmatter <- function(
     md_file_path, rmd_file, order = NULL, title = NULL
     ) {
