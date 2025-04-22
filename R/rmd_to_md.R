@@ -24,7 +24,7 @@
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
 #' sidebar_order <- 2
-#' title <- "Occurrence process"
+#' title <- "2. Occurrence process"
 #'
 #' # Don't forget to install (and update) required packages loaded in the Rmd file
 #' # Convert Rmd to md
@@ -98,7 +98,8 @@ rmd_to_md <- function(
   update_frontmatter(
     md_file_path,
     rmd_file,
-    sidebar_order = sidebar_order
+    sidebar_order = sidebar_order,
+    title = title
   )
 
   # Reset knitting options to the original settings
