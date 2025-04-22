@@ -17,6 +17,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 #'
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
@@ -31,6 +32,7 @@
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
+#' }
 rmd_to_md <- function(
     rmd_file, md_dir, fig_dir, fig_url_dir, order = NULL, title = NULL
     ) {
