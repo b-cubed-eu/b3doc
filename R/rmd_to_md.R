@@ -25,7 +25,7 @@
 #' fig_url_dir <- "/software/gcube/"
 #' order <- 2
 #'
-#' # Don't forget to install and update required packages loaded in the Rmd file
+#' # Don't forget to install (and update) required packages loaded in the Rmd file
 #' # Convert Rmd to md
 #' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 #'
@@ -54,8 +54,6 @@ rmd_to_md <- function(
 
     input_file <- temp_rmd_path
 
-    # Empty the temporary directory and it's contents
-    fs::dir_delete(temp_dir)
   } else {
     # The file is local.
     input_file <- rmd_file
@@ -104,4 +102,9 @@ rmd_to_md <- function(
 
   # Reset knitting options to the original settings
   knitr::opts_knit$set(original_opts_knit)
+
+  # Empty the temporary directory and it's contents
+  if (R.utils::isUrl(rmd_file)) {
+    fs::dir_delete(temp_dir)
+  }
 }
