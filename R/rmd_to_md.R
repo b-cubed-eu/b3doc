@@ -10,9 +10,7 @@
 #' @param fig_dir Path to local directory to save figures to.
 #' @param fig_url_dir URL path that will be used to link to the figures in the
 #'   markdown output.
-#' @param title Title of the article, to show in the menu.
-#' @param sidebar_order Order of the article in the sidebar.
-#'
+#' @inheritParams update_frontmatter
 #' @return Markdown file and figures written do disk.
 #' @export
 #'

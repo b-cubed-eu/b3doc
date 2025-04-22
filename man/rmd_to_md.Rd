@@ -26,7 +26,8 @@ markdown output.}
 
 \item{title}{Title of the article, to show in the menu.}
 
-\item{sidebar_order}{Order of the article in the sidebar.}
+\item{sidebar_order}{Number indicating the order of the article in the
+sidebar.}
 }
 \value{
 Markdown file and figures written do disk.
