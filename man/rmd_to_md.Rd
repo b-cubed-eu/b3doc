@@ -38,8 +38,7 @@ fig_dir <- file.path("output", "public", "software", "gcube")
 fig_url_dir <- "/software/gcube/"
 order <- 2
 
-# Install and update required packages loaded in the Rmd file
-install_required_packages(rmd_file)
+# Don't forget to install and update required packages loaded in the Rmd file
 # Convert Rmd to md
 rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
 
