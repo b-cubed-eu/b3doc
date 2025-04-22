@@ -4,14 +4,22 @@
 \alias{update_frontmatter}
 \title{Update front matter}
 \usage{
-update_frontmatter(md_file_path, rmd_file, title = NULL, sidebar_order = NULL)
+update_frontmatter(
+  md_file_path,
+  rmd_file,
+  title = NULL,
+  sidebar_label = NULL,
+  sidebar_order = NULL
+)
 }
 \arguments{
 \item{md_file_path}{Path to the markdown file on disk.}
 
 \item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
 
-\item{title}{Title of the article, to show in the menu.}
+\item{title}{Title of the article, to show on top of the page}
+
+\item{sidebar_label}{Title in the sidebar.}
 
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
@@ -30,7 +38,8 @@ md_file_path <- here::here(
 )
 rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
 title <- "2. Occurrence process"
+sidebar_label <- "Occurrence-process"
 sidebar_order <- 2
-update_frontmatter(md_file_path, rmd_file, title, sidebar_order)
+update_frontmatter(md_file_path, rmd_file, title, sidebar_label, sidebar_order)
 }
 }

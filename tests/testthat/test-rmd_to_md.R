@@ -7,10 +7,13 @@ test_that("rmd_to_md() writes .md to a directory", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title = "1. Exploring the Iris Dataset"
+  title <- "1. Exploring the Iris Dataset"
+  sidebar_label = "Iris"
   sidebar_order <- 1
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
+  rmd_to_md(
+    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+    )
 
   expect_identical(
     list.files(md_dir),
@@ -29,10 +32,13 @@ test_that("rmd_to_md() writes figures to a directory", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title = "1. Exploring the Iris Dataset"
+  title <- "1. Exploring the Iris Dataset"
+  sidebar_label <- "Iris"
   sidebar_order <- 1
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
+  rmd_to_md(
+    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+  )
 
   expect_equal(
     list.files(fig_dir),
@@ -51,12 +57,15 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title = "1. Exploring the Iris Dataset"
+  title <- "1. Exploring the Iris Dataset"
+  sidebar_label <- "Iris"
   sidebar_order <- 1
 
   original_opts_knit <- knitr::opts_knit$get()
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
+  rmd_to_md(
+    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+  )
 
   new_opts_knit <- knitr::opts_knit$get()
 
@@ -74,10 +83,13 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
   fig_dir <- file.path(temp_dir, "public", "r", "example")
   fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "blah"
-  sidebar_order <- 1
+  title <- "2. Bla"
+  sidebar_label <- "Bla"
+  sidebar_order <- 2
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
+  rmd_to_md(
+    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+  )
 
   md_file <- file.path(md_dir, "example.md")
 
@@ -87,7 +99,7 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
   )
   expect_identical(
     rmarkdown::yaml_front_matter(md_file)$sidebar$order,
-    1.0
+    2.0
   )
   expect_identical(
     rmarkdown::yaml_front_matter(md_file)$source,

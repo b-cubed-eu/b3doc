@@ -22,17 +22,19 @@
 #' fig_dir <- file.path("output", "public", "software", "gcube")
 #' fig_url_dir <- "/software/gcube/"
 #' title <- "2. Occurrence process"
+#' sidebar_label <- "occurrence-process"
 #' sidebar_order <- 2
 #'
 #' # Don't forget to install (and update) required packages loaded in the Rmd file
 #' # Convert Rmd to md
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_order)
+#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order)
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
 #' }
 rmd_to_md <- function(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL, sidebar_order = NULL
+    rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
+    sidebar_label = NULL, sidebar_order = NULL
     ) {
   # Get the basename of the input rmd_file without extension.
   md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
@@ -97,6 +99,7 @@ rmd_to_md <- function(
     md_file_path,
     rmd_file,
     title = title,
+    sidebar_label = sidebar_label,
     sidebar_order = sidebar_order
   )
 
