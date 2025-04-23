@@ -1,12 +1,12 @@
 ---
-title: 1. Exploring the Iris Dataset
+title: Custom title
 author: Sanne Govaert
-date: '2025-04-23'
+date: '<current_date>'
 output: html_document
-lastUpdated: 2025-04-23
+lastUpdated: <current_date>
 sidebar:
-  label: Iris
-  order: 1.0
+  label: Custom sidebar label
+  order: 2
 source: example.Rmd
 
 ---
@@ -97,7 +97,7 @@ legend("topright", legend = levels(iris$Species),
        col = 1:3, pch = 19, title = "Species")
 ```
 
-![](C:\Users\SANNE_~1\AppData\Local\Temp\Rtmp2LSHeu/astro-docs/r/example/example-unnamed-chunk-3-1.png)
+![](/software/example/example-unnamed-chunk-3-1.png)
 
 ## Finding the Largest Sepal
 
