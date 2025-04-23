@@ -27,92 +27,43 @@ test_that("rmd_to_md() writes .md and figures to the expected directories", {
   )
 })
 
+test_that("rmd_to_md() writes the expected markdown, including custom
+           frontmatter and figure paths", {
   temp_dir <- tempdir()
+  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  on.exit(unlink(temp_dir, recursive = TRUE))
 
   rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    title = "Custom title",
+    sidebar_label = "Custom sidebar label",
+    sidebar_order = 2
   )
 
+  expect_snapshot_file(
+    file.path(expected_md_dir, "example.md"),
+    transform = function(x) {
+      gsub(format(Sys.time(), "%Y-%m-%d"), "<current_date>", x)
+    }
   )
 })
 
 test_that("rmd_to_md() resets knitting options to the original settings", {
-  rmd_file <- testthat::test_path("example.Rmd")
-
   temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
-  fig_dir <- file.path(temp_dir, "public", "r", "example")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "1. Exploring the Iris Dataset"
-  sidebar_label <- "Iris"
-  sidebar_order <- 1
-
+  on.exit(unlink(temp_dir, recursive = TRUE))
   original_opts_knit <- knitr::opts_knit$get()
 
   rmd_to_md(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = file.path(temp_dir, "src/content/docs/software/example"),
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    sidebar_order = 2
   )
-
   new_opts_knit <- knitr::opts_knit$get()
 
   expect_identical(original_opts_knit, new_opts_knit)
-
-  unlink(temp_dir, recursive = TRUE)
-})
-
-test_that("rmd_to_md() updates the frontmatter of the markdown file", {
-  rmd_file <- testthat::test_path("example.Rmd")
-
-  temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
-  fig_dir <- file.path(temp_dir, "public", "r", "example")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "2. Bla"
-  sidebar_label <- "Bla"
-  sidebar_order <- 2
-
-  rmd_to_md(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
-  )
-
-  md_file <- file.path(md_dir, "example.md")
-
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$lastUpdated,
-    format(Sys.time(), "%Y-%m-%d")
-  )
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$sidebar$order,
-    2.0
-  )
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$source,
-    rmd_file
-  )
-
-  unlink(temp_dir, recursive = TRUE)
-})
-
-test_that("rmd_to_md() writes the expected markdown file", {
-  rmd_file <- testthat::test_path("example.Rmd")
-
-  temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
-  fig_dir <- file.path(temp_dir, "public", "r", "example")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "1. Exploring the Iris Dataset"
-  sidebar_label <- "Iris"
-  sidebar_order <- 1
-
-  rmd_to_md(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
-  )
-
-  md_file <- file.path(md_dir, "example.md")
-
-  expect_snapshot_file(md_file)
-
-  unlink(temp_dir, recursive = TRUE)
 })
