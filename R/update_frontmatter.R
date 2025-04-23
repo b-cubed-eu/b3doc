@@ -26,23 +26,25 @@
 #' }
 update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
                                sidebar_label = NULL, sidebar_order = NULL) {
-  if (!is.numeric(sidebar_order)) {
-    cli::cli_warn(
-      c(
-        "{.arg sidebar_order} must be a number with maximum 1 decimal."
-      ),
-      class = "b3doc_error_order_invalid"
-    )
-  }
+  if (!is.null(sidebar_order)) {
+    if (!is.numeric(sidebar_order)) {
+      cli::cli_warn(
+        c(
+          "{.arg sidebar_order} must be a number with maximum 1 decimal."
+        ),
+        class = "b3doc_error_order_invalid"
+      )
+    }
 
-  decimal_part <- strsplit(as.character(sidebar_order), split = "\\.")[[1]][2]
-  if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
-    cli::cli_warn(
-      c(
-        "{.arg sidebar_order} must be a number with maximum 1 decimal."
-      ),
-      class = "b3doc_error_order_invalid"
-    )
+    decimal_part <- strsplit(as.character(sidebar_order), split = "\\.")[[1]][2]
+    if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
+      cli::cli_warn(
+        c(
+          "{.arg sidebar_order} must be a number with maximum 1 decimal."
+        ),
+        class = "b3doc_error_order_invalid"
+      )
+    }
   }
 
   # Transform original file path from raw to edit mode
