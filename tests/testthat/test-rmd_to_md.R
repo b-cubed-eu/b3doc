@@ -13,8 +13,7 @@ test_that("rmd_to_md() writes .md and figures to the expected directories", {
     rmd_file = testthat::test_path("example.Rmd"),
     md_dir = expected_md_dir,
     fig_dir = expected_fig_dir,
-    fig_url_dir = "/software/example/",
-    sidebar_order = 2
+    fig_url_dir = "/software/example/"
   )
 
   expect_identical(
@@ -60,8 +59,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
     rmd_file = testthat::test_path("example.Rmd"),
     md_dir = file.path(temp_dir, "src/content/docs/software/example"),
     fig_dir = file.path(temp_dir, "public/software/example"),
-    fig_url_dir = "/software/example/",
-    sidebar_order = 2
+    fig_url_dir = "/software/example/"
   )
   new_opts_knit <- knitr::opts_knit$get()
 
