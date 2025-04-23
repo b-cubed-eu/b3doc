@@ -1,100 +1,67 @@
-test_that("rmd_to_md() writes .md to a directory", {
-  skip_if_offline()
-  rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-
-  temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
-  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/", "r", "gcube", "/")
-  order <- 1
-
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
-
-  expect_identical(
-    list.files(md_dir),
-    c("occurrence-process.md")
-  )
-
-  unlink(temp_dir, recursive = TRUE)
+test_that("example.Rmd file is accessible", {
+  file_path <- testthat::test_path("example.Rmd")
+  expect_true(file.exists(file_path))
 })
 
-test_that("rmd_to_md() writes figures to a directory", {
-  skip("Test broken see issue #2")
-  skip_if_offline()
-  rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-
+test_that("rmd_to_md() writes .md and figures to the expected directories", {
   temp_dir <- tempdir()
+  on.exit(unlink(temp_dir, recursive = TRUE))
+  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  expected_fig_dir <- file.path(temp_dir, "public/software/example")
 
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
-  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
-  order <- 1
-
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
-
-  expect_equal(
-    list.files(fig_dir),
-    c(
-      "occurrence-process-unnamed-chunk-12-1.png",
-      "occurrence-process-unnamed-chunk-3-1.png",
-      "occurrence-process-unnamed-chunk-7-1.png",
-      "occurrence-process-unnamed-chunk-9-1.png"
-    )
+  rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = expected_md_dir,
+    fig_dir = expected_fig_dir,
+    fig_url_dir = "/software/example/"
   )
 
-  unlink(temp_dir, recursive = TRUE)
+  expect_identical(
+    list.files(expected_md_dir),
+    c("example.md")
+  )
+  expect_identical(
+    list.files(expected_fig_dir),
+    c("example-unnamed-chunk-3-1.png")
+  )
+})
+
+test_that("rmd_to_md() writes the expected markdown, including custom
+           frontmatter and figure paths", {
+  temp_dir <- tempdir()
+  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  on.exit(unlink(temp_dir, recursive = TRUE))
+
+  rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    title = "Custom title",
+    sidebar_label = "Custom sidebar label",
+    sidebar_order = 2
+  )
+
+  expect_snapshot_file(
+    file.path(expected_md_dir, "example.md"),
+    transform = function(x) {
+      gsub(format(Sys.time(), "%Y-%m-%d"), "<current_date>", x)
+    }
+  )
 })
 
 test_that("rmd_to_md() resets knitting options to the original settings", {
-  skip_if_offline()
-  rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-
   temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
-  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
-  order <- 1
-
+  on.exit(unlink(temp_dir, recursive = TRUE))
   original_opts_knit <- knitr::opts_knit$get()
 
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
-
+  rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = file.path(temp_dir, "src/content/docs/software/example"),
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/"
+  )
   new_opts_knit <- knitr::opts_knit$get()
 
   expect_identical(original_opts_knit, new_opts_knit)
-
-  unlink(temp_dir, recursive = TRUE)
-})
-
-test_that("rmd_to_md() updates the frontmatter of the markdown file", {
-  skip_if_offline()
-  rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
-
-  temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "gcube")
-  fig_dir <- file.path(temp_dir, "public", "r", "gcube")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/gcube/")
-  order <- 1
-
-  rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
-
-  md_file <- file.path(md_dir, "occurrence-process.md")
-
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$lastUpdated,
-    format(Sys.time(), "%Y-%m-%d")
-  )
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$sidebar$order,
-    1.0
-  )
-  expect_identical(
-    rmarkdown::yaml_front_matter(md_file)$source,
-    "https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd"
-  )
-
-  unlink(temp_dir, recursive = TRUE)
 })

@@ -1,32 +1,43 @@
 #' Convert external R Markdown to Markdown
 #'
-#' Converts an R Markdown (.Rmd) file to a Markdown (.md) file. Both local and
-#' remote .Rmd files can be handled. The date this function is called upon is
-#' added to the beginning of the Markdown file.
+#' Converts an R Markdown (`.Rmd`) file to a Markdown (`.md`) file.
+#' Both local and remote `.Rmd` files can be handled.
+#' The date this function is called upon is added to the beginning of the
+#' Markdown file.
 #'
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param md_dir Path to local directory to Markdown file to. If it doesn't
-#'   exist it will be created.
-#' @param fig_dir Path to local directory to save figures to.
-#' @param fig_url_dir URL path that will be used to link to the figures in the
-#'   markdown output.
-#' @param order Order of the article in the menu.
-#'
+#' @param md_dir Path to local directory to write the Markdown file to.
+#'   If it doesn't exist it will be created.
+#' @param fig_dir Path to local directory to write the figures to.
+#' @param fig_url_dir Link prefix that will be used to refer to figures in
+#'   Markdown output.
+#' @inheritParams update_frontmatter
 #' @return Markdown file and figures written do disk.
 #' @export
 #'
 #' @examples
-#' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
+#' \dontrun{
+#' # First check and install (or update) packages loaded in the Rmd file
 #'
-#' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
-#' fig_dir <- file.path("output", "public", "software", "gcube")
-#' fig_url_dir <- "/software/gcube/"
-#' order <- 1
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, order)
+#' # Then convert Rmd to Markdown
+#' rmd_to_md(
+#'   rmd_file = file.path(
+#'     "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main",
+#'     "vignettes/articles/occurrence-process.Rmd"
+#'   ),
+#'   md_dir = "output/src/content/docs/software/gcube",
+#'   fig_dir = "output/public/software/gcube",
+#'   fig_url_dir = "/software/gcube/",
+#'   title = "2. Occurrence process",
+#'   sidebar_label = "occurrence-process",
+#'   sidebar_order = 2
+#' )
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
-rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
+#' }
+rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
+                      sidebar_label = NULL, sidebar_order = NULL) {
   # Get the basename of the input rmd_file without extension.
   md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
 
@@ -45,6 +56,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
                          temp_rmd_path)
 
     input_file <- temp_rmd_path
+
   } else {
     # The file is local.
     input_file <- rmd_file
@@ -88,12 +100,16 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, order) {
   update_frontmatter(
     md_file_path,
     rmd_file,
-    order = order
+    title = title,
+    sidebar_label = sidebar_label,
+    sidebar_order = sidebar_order
   )
 
   # Reset knitting options to the original settings
   knitr::opts_knit$set(original_opts_knit)
 
   # Empty the temporary directory and it's contents
-  fs::dir_delete(temp_dir)
+  if (R.utils::isUrl(rmd_file)) {
+    fs::dir_delete(temp_dir)
+  }
 }
