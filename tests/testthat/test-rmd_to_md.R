@@ -1,6 +1,10 @@
+test_that("example.Rmd file is accessible", {
+  file_path <- testthat::test_path("example.Rmd")
+  expect_true(file.exists(file_path))
+})
+
 test_that("rmd_to_md() writes .md to a directory", {
-  skip_if_offline()
-  rmd_file <- here::here("examples", "example.Rmd")
+  rmd_file <- testthat::test_path(testthat::test_path("example.Rmd"))
 
   temp_dir <- tempdir()
 
@@ -24,8 +28,7 @@ test_that("rmd_to_md() writes .md to a directory", {
 })
 
 test_that("rmd_to_md() writes figures to a directory", {
-  skip_if_offline()
-  rmd_file <- here::here("examples", "example.Rmd")
+  rmd_file <- testthat::test_path("example.Rmd")
 
   temp_dir <- tempdir()
 
@@ -49,8 +52,7 @@ test_that("rmd_to_md() writes figures to a directory", {
 })
 
 test_that("rmd_to_md() resets knitting options to the original settings", {
-  skip_if_offline()
-  rmd_file <- here::here("examples", "example.Rmd")
+  rmd_file <- testthat::test_path("example.Rmd")
 
   temp_dir <- tempdir()
 
@@ -75,8 +77,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
 })
 
 test_that("rmd_to_md() updates the frontmatter of the markdown file", {
-  skip_if_offline()
-  rmd_file <- here::here("examples", "example.Rmd")
+  rmd_file <- testthat::test_path("example.Rmd")
 
   temp_dir <- tempdir()
 
