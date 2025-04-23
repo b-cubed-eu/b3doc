@@ -109,3 +109,26 @@ test_that("rmd_to_md() updates the frontmatter of the markdown file", {
 
   unlink(temp_dir, recursive = TRUE)
 })
+
+test_that("rmd_to_md() writes the expected markdown file", {
+  rmd_file <- testthat::test_path("example.Rmd")
+
+  temp_dir <- tempdir()
+
+  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
+  fig_dir <- file.path(temp_dir, "public", "r", "example")
+  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
+  title <- "1. Exploring the Iris Dataset"
+  sidebar_label <- "Iris"
+  sidebar_order <- 1
+
+  rmd_to_md(
+    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+  )
+
+  md_file <- file.path(md_dir, "example.md")
+
+  expect_snapshot_file(md_file)
+
+  unlink(temp_dir, recursive = TRUE)
+})
