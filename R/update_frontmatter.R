@@ -47,10 +47,6 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
     }
   }
 
-  # Transform original file path from raw to edit mode
-  rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
-  rmd_file <- gsub("/refs/heads/", "/blob/", rmd_file)
-
   # Read front matter
   lines <- readLines(md_file_path)
   frontmatter_start <- which(lines == "---")[1]
@@ -62,8 +58,15 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   if (!is.null(title)) {frontmatter$title <- title}
   frontmatter$lastUpdated <- format(Sys.time(), "%Y-%m-%d")
   if (!is.null(sidebar_label)) {frontmatter$sidebar$label <- sidebar_label}
-  if (!is.null(sidebar_order)) {frontmatter$sidebar$order <- sidebar_order}
-  frontmatter$source <- rmd_file
+  if (!is.null(sidebar_order)) {
+    frontmatter$sidebar$order <- as.integer(sidebar_order)
+    }
+  if (R.utils::isUrl(rmd_file)) {
+    # Transform original file path from raw to edit mode to add as source
+    rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
+    rmd_file <- gsub("/refs/heads/", "/blob/", rmd_file)
+    frontmatter$source <- rmd_file
+  }
   new_frontmatter <- yaml::as.yaml(frontmatter)
   # as.yaml() converts the date to a string with quotes; remove quotes
   new_frontmatter <-
