@@ -36,10 +36,13 @@ md_file_path <- here::here(
 "output", "src", "content", "docs", "software", "gcube",
 "occurrence-process.md"
 )
-rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
+rmd_file <- paste0("https://raw.githubusercontent.com/b-cubed-eu/gcube/",
+"refs/heads/main/vignettes/articles/occurrence-process.Rmd")
 title <- "2. Occurrence process"
 sidebar_label <- "Occurrence-process"
 sidebar_order <- 2
-update_frontmatter(md_file_path, rmd_file, title, sidebar_label, sidebar_order)
+update_frontmatter(
+md_file_path, rmd_file, title, sidebar_label, sidebar_order
+)
 }
 }

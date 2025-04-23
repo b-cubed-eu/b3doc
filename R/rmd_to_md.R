@@ -16,7 +16,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' rmd_file <- "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd"
+#' rmd_file <- paste0("https://raw.githubusercontent.com/b-cubed-eu/gcube/",
+#' "refs/heads/main/vignettes/articles/occurrence-process.Rmd")
 #'
 #' md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
 #' fig_dir <- file.path("output", "public", "software", "gcube")
@@ -25,9 +26,13 @@
 #' sidebar_label <- "occurrence-process"
 #' sidebar_order <- 2
 #'
-#' # Don't forget to install (and update) required packages loaded in the Rmd file
+#' # Don't forget to install (and update) required packages loaded in the Rmd
+#' # file
+#'
 #' # Convert Rmd to md
-#' rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order)
+#' rmd_to_md(
+#' rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+#' )
 #'
 #' # Clean up (don't do this if you want to keep your files)
 #' unlink("output", recursive = TRUE)
