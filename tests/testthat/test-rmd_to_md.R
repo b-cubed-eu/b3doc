@@ -3,52 +3,36 @@ test_that("example.Rmd file is accessible", {
   expect_true(file.exists(file_path))
 })
 
-test_that("rmd_to_md() writes .md to a directory", {
-  rmd_file <- testthat::test_path(testthat::test_path("example.Rmd"))
-
+test_that("rmd_to_md() writes .md and figures to the expected directories", {
   temp_dir <- tempdir()
-
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
-  fig_dir <- file.path(temp_dir, "public", "r", "example")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "1. Exploring the Iris Dataset"
-  sidebar_label = "Iris"
-  sidebar_order <- 1
+  on.exit(unlink(temp_dir, recursive = TRUE))
+  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  expected_fig_dir <- file.path(temp_dir, "public/software/example")
 
   rmd_to_md(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
-    )
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = expected_md_dir,
+    fig_dir = expected_fig_dir,
+    fig_url_dir = "/software/example/",
+    sidebar_order = 2
+  )
 
   expect_identical(
-    list.files(md_dir),
+    list.files(expected_md_dir),
     c("example.md")
   )
-
-  unlink(temp_dir, recursive = TRUE)
+  expect_identical(
+    list.files(expected_fig_dir),
+    c("example-unnamed-chunk-3-1.png")
+  )
 })
-
-test_that("rmd_to_md() writes figures to a directory", {
-  rmd_file <- testthat::test_path("example.Rmd")
 
   temp_dir <- tempdir()
 
-  md_dir <- file.path(temp_dir, "src", "content", "docs", "r", "example")
-  fig_dir <- file.path(temp_dir, "public", "r", "example")
-  fig_url_dir <- paste0(temp_dir, "/astro-docs/r/example/")
-  title <- "1. Exploring the Iris Dataset"
-  sidebar_label <- "Iris"
-  sidebar_order <- 1
-
   rmd_to_md(
-    rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
   )
 
-  expect_equal(
-    list.files(fig_dir),
-    c("example-unnamed-chunk-3-1.png")
   )
-
-  unlink(temp_dir, recursive = TRUE)
 })
 
 test_that("rmd_to_md() resets knitting options to the original settings", {
