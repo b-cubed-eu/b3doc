@@ -42,22 +42,20 @@ added to the beginning of the Markdown file.
 }
 \examples{
 \dontrun{
-rmd_file <- paste0("https://raw.githubusercontent.com/b-cubed-eu/gcube/",
-"refs/heads/main/vignettes/articles/occurrence-process.Rmd")
+# First check and install (or update) packages loaded in the Rmd file
 
-md_dir <- file.path("output", "src", "content", "docs", "software", "gcube")
-fig_dir <- file.path("output", "public", "software", "gcube")
-fig_url_dir <- "/software/gcube/"
-title <- "2. Occurrence process"
-sidebar_label <- "occurrence-process"
-sidebar_order <- 2
-
-# Don't forget to install (and update) required packages loaded in the Rmd
-# file
-
-# Convert Rmd to md
+# Then convert Rmd to Markdown
 rmd_to_md(
-rmd_file, md_dir, fig_dir, fig_url_dir, title, sidebar_label, sidebar_order
+  rmd_file = file.path(
+    "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main",
+    "vignettes/articles/occurrence-process.Rmd"
+  ),
+  md_dir = "output/src/content/docs/software/gcube",
+  fig_dir = "output/public/software/gcube",
+  fig_url_dir = "/software/gcube/",
+  title = "2. Occurrence process",
+  sidebar_label = "occurrence-process",
+  sidebar_order = 2
 )
 
 # Clean up (don't do this if you want to keep your files)
