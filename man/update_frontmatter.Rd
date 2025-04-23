@@ -13,11 +13,11 @@ update_frontmatter(
 )
 }
 \arguments{
-\item{md_file_path}{Path to the markdown file on disk.}
+\item{md_file_path}{Path to the Markdown file on disk.}
 
 \item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
 
-\item{title}{Title of the article, to show on top of the page}
+\item{title}{Title of the article, to show on top of the page.}
 
 \item{sidebar_label}{Title in the sidebar.}
 
@@ -28,7 +28,7 @@ sidebar.}
 Markdown file with updated front matter, written to disk.
 }
 \description{
-Updates the front matter of a markdown file on disk.
+Updates the front matter of a Markdown file on disk.
 }
 \examples{
 \dontrun{

@@ -1,15 +1,16 @@
 #' Convert external R Markdown to Markdown
 #'
-#' Converts an R Markdown (.Rmd) file to a Markdown (.md) file. Both local and
-#' remote .Rmd files can be handled. The date this function is called upon is
-#' added to the beginning of the Markdown file.
+#' Converts an R Markdown (`.Rmd`) file to a Markdown (`.md`) file.
+#' Both local and remote `.Rmd` files can be handled.
+#' The date this function is called upon is added to the beginning of the
+#' Markdown file.
 #'
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
-#' @param md_dir Path to local directory to Markdown file to. If it doesn't
-#'   exist it will be created.
-#' @param fig_dir Path to local directory to save figures to.
-#' @param fig_url_dir URL path that will be used to link to the figures in the
-#'   markdown output.
+#' @param md_dir Path to local directory to write the Markdown file to.
+#'   If it doesn't exist it will be created.
+#' @param fig_dir Path to local directory to write the figures to.
+#' @param fig_url_dir Link prefix that will be used to refer to figures in
+#'   Markdown output.
 #' @inheritParams update_frontmatter
 #' @return Markdown file and figures written do disk.
 #' @export
