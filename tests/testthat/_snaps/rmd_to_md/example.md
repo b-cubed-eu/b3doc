@@ -7,7 +7,6 @@ lastUpdated: <current_date>
 sidebar:
   label: Custom sidebar label
   order: 2
-
 ---
 
 ## Introduction
