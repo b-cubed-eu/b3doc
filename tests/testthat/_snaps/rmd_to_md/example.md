@@ -1,9 +1,9 @@
 ---
 title: Custom title
 author: Sanne Govaert
-date: '<current_date>'
+date: '<date>'
 output: html_document
-lastUpdated: <current_date>
+lastUpdated: <date>
 sidebar:
   label: Custom sidebar label
   order: 2

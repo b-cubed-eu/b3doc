@@ -45,7 +45,7 @@ test_that("rmd_to_md() writes the expected markdown, including custom
   expect_snapshot_file(
     file.path(expected_md_dir, "example.md"),
     transform = function(x) {
-      gsub(format(Sys.time(), "%Y-%m-%d"), "<current_date>", x)
+      gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
     }
   )
 })
