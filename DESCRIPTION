@@ -10,7 +10,7 @@ Authors@R: c(
     person("Pieter", "Huybrechts", , "pieter.huybrechts@inbo.be", role = "aut",
            comment = c(ORCID = "0000-0002-6658-6062", affiliation = "Research Institute for Nature and Forest (INBO)")),
     person("Research Institute for Nature and Forest (INBO)", role = "cph",
-           comment = "https://www.vlaanderen.be/inbo/en-gb/"),
+           comment = c(ROR = "00j54wy13")),
     person("European Union's Horizon Europe Research and Innovation Programme (ID No 101059592)", role = "fnd")
   )
 Description: What the package does (one paragraph).
