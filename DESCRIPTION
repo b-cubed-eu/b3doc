@@ -1,5 +1,5 @@
 Package: b3doc
-Title: What the Package Does (One Line, Title Case)
+Title: Tools For The B-Cubed Project Documentation Website
 Version: 0.0.0.9000
 Date: 2025-02-26
 Authors@R: c(
@@ -13,7 +13,7 @@ Authors@R: c(
            comment = "https://www.vlaanderen.be/inbo/en-gb/"),
     person("European Union's Horizon Europe Research and Innovation Programme (ID No 101059592)", role = "fnd")
   )
-Description: What the package does (one paragraph).
+Description: The goal of the package is to render externally stored Rmarkdown files (eg in vignettes from other packages) to local markdown files so they can be reused for the project documentation website. The package also provides functionality to enrich the rendered markdown in the frontmatter.
 License: MIT + file LICENSE
 Bugreports: https://github.com/b-cubed-eu/b3doc/issues
 Encoding: UTF-8
