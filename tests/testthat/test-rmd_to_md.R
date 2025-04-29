@@ -65,3 +65,25 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
 
   expect_identical(original_opts_knit, new_opts_knit)
 })
+
+test_that("rmd_to_md() replaces logo URLs correctly", {
+  temp_dir <- tempdir()
+  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  on.exit(unlink(temp_dir, recursive = TRUE))
+
+  logo_from <- "man/figures/logo.png"
+  logo_to <- "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+
+  rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    logo_from = logo_from,
+    logo_to = logo_to
+  )
+
+  md_content <- readLines(file.path(expected_md_dir, "example.md"))
+  expect_true(any(grepl(logo_from, md_content)))
+  expect_false(any(grepl(logo_to, md_content)))
+})
