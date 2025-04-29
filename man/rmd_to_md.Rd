@@ -11,7 +11,9 @@ rmd_to_md(
   fig_url_dir,
   title = NULL,
   sidebar_label = NULL,
-  sidebar_order = NULL
+  sidebar_order = NULL,
+  logo_from = NULL,
+  logo_to = NULL
 )
 }
 \arguments{
@@ -31,6 +33,10 @@ Markdown output.}
 
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
+
+\item{logo_from}{Path to the logo to be replaced.}
+
+\item{logo_to}{URL to the logo file that replaces the old one.}
 }
 \value{
 Markdown file and figures written do disk.
