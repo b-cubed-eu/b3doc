@@ -10,8 +10,9 @@ Authors@R: c(
     person("Pieter", "Huybrechts", , "pieter.huybrechts@inbo.be", role = "aut",
            comment = c(ORCID = "0000-0002-6658-6062", affiliation = "Research Institute for Nature and Forest (INBO)")),
     person("Research Institute for Nature and Forest (INBO)", role = "cph",
-           comment = "https://www.vlaanderen.be/inbo/en-gb/"),
-    person("European Union's Horizon Europe Research and Innovation Programme (ID No 101059592)", role = "fnd")
+           comment = c(ROR = "00j54wy13")),
+    person("European Union", role = "fnd",
+           comment = "https://doi.org/10.3030/101059592")
   )
 Description: The goal of the package is to render externally stored Rmarkdown files (eg in vignettes from other packages) to local markdown files so they can be reused for the project documentation website. The package also provides functionality to enrich the rendered markdown in the frontmatter.
 License: MIT + file LICENSE
