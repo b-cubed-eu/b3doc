@@ -9,7 +9,9 @@ update_frontmatter(
   rmd_file,
   title = NULL,
   sidebar_label = NULL,
-  sidebar_order = NULL
+  sidebar_order = NULL,
+  logo_from = NULL,
+  logo_to = NULL
 )
 }
 \arguments{
@@ -23,6 +25,10 @@ update_frontmatter(
 
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
+
+\item{logo_from}{Path to the logo to be replaced.}
+
+\item{logo_to}{URL to the logo file that replaces the old one.}
 }
 \value{
 Markdown file with updated front matter, written to disk.
