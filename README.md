@@ -8,17 +8,46 @@
 [![R-CMD-check](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
-[![test-coverage](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml)
+[![repo
+status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-The goal of b3doc is to …
+b3doc is an R package to create Markdown pages for the [B-Cubed
+documentation website](https://docs.b-cubed.eu) from external R Markdown
+files, such as vignettes. The package has functionality to set the
+necessary metadata in the front matter.
+
+To get started, see:
+
+- [Function
+  reference](https://b-cubed-eu.github.io/b3doc/reference/index.html):
+  overview of all functions.
 
 ## Installation
 
 You can install the development version of b3doc from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/b-cubed-eu/b3doc) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("b-cubed-eu/b3doc")
 ```
+
+## Meta
+
+- We welcome
+  [contributions](https://b-cubed-eu.github.io/b3doc/CONTRIBUTING.html)
+  including bug reports.
+- License: MIT
+- Get [citation
+  information](https://b-cubed-eu.github.io/b3doc/authors.html#citation)
+  for camtrapdp in R doing `citation("camtrapdp")`.
+- Please note that this project is released with a [Contributor Code of
+  Conduct](https://b-cubed-eu.github.io/b3doc/CODE_OF_CONDUCT.html). By
+  participating in this project you agree to abide by its terms.
+
+## Acknowledgments
+
+This software was developed with funding from the European Union’s
+Horizon Europe Research and Innovation Programme under grant agreement
+ID No [101059592](https://doi.org/10.3030/101059592).
