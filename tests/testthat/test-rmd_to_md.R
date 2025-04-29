@@ -7,7 +7,7 @@ test_that("rmd_to_md() raises error on invalid sidebar_error", {
   fig_dir <- file.path(temp_dir, "public/software/example")
   fig_url_dir <- "/software/example/"
 
-  expect_warning(
+  expect_error(
     rmd_to_md(
       rmd_file = rmd_file,
       md_dir = md_dir,
@@ -18,7 +18,7 @@ test_that("rmd_to_md() raises error on invalid sidebar_error", {
     class = "b3doc_error_order_invalid"
   )
 
-  expect_warning(
+  expect_error(
     rmd_to_md(
       rmd_file = rmd_file,
       md_dir = md_dir,
@@ -29,7 +29,7 @@ test_that("rmd_to_md() raises error on invalid sidebar_error", {
     class = "b3doc_error_order_invalid"
   )
 
-  expect_warning(
+  expect_error(
     rmd_to_md(
       rmd_file = rmd_file,
       md_dir = md_dir,

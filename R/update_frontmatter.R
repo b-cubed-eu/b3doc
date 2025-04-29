@@ -32,17 +32,17 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
     if (!is.numeric(sidebar_order)) {
       cli::cli_abort(
         c(
-          "{.arg sidebar_order} must be a number with maximum 1 decimal."
+          "{.arg sidebar_order} must be an integer."
         ),
         class = "b3doc_error_order_invalid"
       )
     }
 
     decimal_part <- strsplit(as.character(sidebar_order), split = "\\.")[[1]][2]
-    if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
+    if (!is.na(decimal_part) && nchar(decimal_part) > 0) {
       cli::cli_abort(
         c(
-          "{.arg sidebar_order} must be a number with maximum 1 decimal."
+          "{.arg sidebar_order} must be an integer."
         ),
         class = "b3doc_error_order_invalid"
       )
