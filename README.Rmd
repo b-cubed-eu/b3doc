@@ -21,13 +21,28 @@ knitr::opts_chunk$set(
 [![test-coverage](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
-The goal of b3doc is to ...
+The goal of `b3doc` is to render externally stored Rmarkdown files (eg in vignettes from other packages) to local markdown files so they can be reused for the project documentation website. The package also provides functionality to enrich the rendered markdown in the frontmatter.
+
 
 ## Installation
 
-You can install the development version of b3doc from [GitHub](https://github.com/) with:
+You can install the development version of `b3doc` from
+[GitHub](https://github.com/) with:
 
-``` r
-# install.packages("pak")
-pak::pak("b-cubed-eu/b3doc")
+```r
+devtools::install_github("b-cubed-eu/b3doc#9")
+```
+
+
+## Contributing
+
+We welcome contributions! Please raise issues on the [issue tracker](https://github.com/b-cubed-eu/b3doc/issues) or submit pull requests.
+
+## License
+
+This package is licensed under the MIT License. See the LICENSE file for details.
+
+## Acknowledgments
+
+This project has received funding from the European Union's Horizon Europe Research and Innovation Programme under grant agreement ID No 101059592.
 ```
