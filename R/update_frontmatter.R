@@ -30,7 +30,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
                                sidebar_label = NULL, sidebar_order = NULL, logo_from = NULL, logo_to = NULL) {
   if (!is.null(sidebar_order)) {
     if (!is.numeric(sidebar_order)) {
-      cli::cli_warn(
+      cli::cli_abort(
         c(
           "{.arg sidebar_order} must be a number with maximum 1 decimal."
         ),
@@ -40,7 +40,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
 
     decimal_part <- strsplit(as.character(sidebar_order), split = "\\.")[[1]][2]
     if (!is.na(decimal_part) && nchar(decimal_part) > 1) {
-      cli::cli_warn(
+      cli::cli_abort(
         c(
           "{.arg sidebar_order} must be a number with maximum 1 decimal."
         ),
