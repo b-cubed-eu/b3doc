@@ -49,7 +49,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
     }
   }
 
-  # Read markdonw
+  # Read markdown
   lines <- readLines(md_file_path)
 
   # Replace logo URL
