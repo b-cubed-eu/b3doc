@@ -77,7 +77,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     fig_url_dir = "/software/example/",
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
-    sidebar_order = 2
+    sidebar_order = 2,
+    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
   )
 
   expect_snapshot_file(
@@ -102,24 +103,4 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
   new_opts_knit <- knitr::opts_knit$get()
 
   expect_identical(original_opts_knit, new_opts_knit)
-})
-
-test_that("rmd_to_md() replaces logo URLs correctly", {
-  temp_dir <- tempdir()
-  expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
-  on.exit(unlink(temp_dir, recursive = TRUE))
-
-  logo <- "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
-
-  rmd_to_md(
-    rmd_file = testthat::test_path("example.Rmd"),
-    md_dir = expected_md_dir,
-    fig_dir = file.path(temp_dir, "public/software/example"),
-    fig_url_dir = "/software/example/",
-    logo = logo
-  )
-
-  md_content <- readLines(file.path(expected_md_dir, "example.md"))
-  expect_true(any(grepl("man/figures/logo.png", md_content)))
-  expect_false(any(grepl(logo, md_content)))
 })

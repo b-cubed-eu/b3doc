@@ -9,7 +9,7 @@ sidebar:
   order: 2
 ---
 
-<img src="man/figures/logo.png" align="right" height="139" alt="Rmarkdown logo" /></a>
+<img src="https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png" align="right" height="139" alt="Rmarkdown logo" /></a>
 
 ## Introduction
 
