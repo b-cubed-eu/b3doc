@@ -75,11 +75,13 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
     rmd_file <- gsub("/refs/heads/", "/blob/", rmd_file)
     frontmatter$source <- rmd_file
   }
-  new_frontmatter <- yaml::as.yaml(frontmatter) %>%
-    # as.yaml() converts the date to a string with quotes; remove quotes
-    gsub("lastUpdated: '(.*)'", "lastUpdated: \\1", .) %>%
-    # as.yaml() adds a a newline character at the end: remove newline
-    gsub("\n$", "", .)
+  new_frontmatter <- yaml::as.yaml(frontmatter)
+  # as.yaml() converts the date to a string with quotes; remove quotes
+  new_frontmatter <- gsub(
+    "lastUpdated: '(.*)'", "lastUpdated: \\1", new_frontmatter
+    )
+  # as.yaml() adds a a newline character at the end: remove newline
+  new_frontmatter <- gsub("\n$", "", new_frontmatter)
 
   # Write front matter
   updated_lines <- c(
