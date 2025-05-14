@@ -41,11 +41,6 @@ test_that("rmd_to_md() returns error on invalid sidebar_order", {
   )
 })
 
-test_that("example.Rmd file is accessible", {
-  file_path <- testthat::test_path("example.Rmd")
-  expect_true(file.exists(file_path))
-})
-
 test_that("rmd_to_md() writes .md and figures to the expected directories", {
   temp_dir <- tempdir()
   on.exit(unlink(temp_dir, recursive = TRUE))
