@@ -1,6 +1,6 @@
 #' Update front matter
 #'
-#' Updates the front matter of a Markdown file on disk.
+#' Updates the front matter and replaces the logo of a Markdown file on disk.
 #'
 #' @param md_file_path Path to the Markdown file on disk.
 #' @param rmd_file Path to the R Markdown file, either a local path or a URL.
@@ -8,7 +8,7 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param logo URL to the logo file that replaces the old one.
+#' @param logo URL to the logo file that replaces `"man/figures/logo.png"`.
 #' @return Markdown file with updated front matter, written to disk.
 #' @examples
 #' \dontrun{

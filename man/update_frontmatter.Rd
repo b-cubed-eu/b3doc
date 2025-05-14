@@ -25,13 +25,13 @@ update_frontmatter(
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{logo}{URL to the logo file that replaces the old one.}
+\item{logo}{URL to the logo file that replaces \code{"man/figures/logo.png"}.}
 }
 \value{
 Markdown file with updated front matter, written to disk.
 }
 \description{
-Updates the front matter of a Markdown file on disk.
+Updates the front matter and replaces the logo of a Markdown file on disk.
 }
 \examples{
 \dontrun{
