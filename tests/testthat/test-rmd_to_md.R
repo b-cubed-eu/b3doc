@@ -1,4 +1,4 @@
-test_that("rmd_to_md() raises error on invalid sidebar_error", {
+test_that("rmd_to_md() returns error on invalid sidebar_order", {
   temp_dir <- tempdir()
   on.exit(unlink(temp_dir, recursive = TRUE))
 
