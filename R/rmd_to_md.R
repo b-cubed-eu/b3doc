@@ -102,7 +102,8 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
     rmd_file,
     title = title,
     sidebar_label = sidebar_label,
-    sidebar_order = sidebar_order
+    sidebar_order = sidebar_order,
+    logo = logo
   )
 
   # Reset knitting options to the original settings
