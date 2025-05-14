@@ -12,8 +12,7 @@ rmd_to_md(
   title = NULL,
   sidebar_label = NULL,
   sidebar_order = NULL,
-  logo_from = NULL,
-  logo_to = NULL
+  logo = NULL
 )
 }
 \arguments{
@@ -33,6 +32,8 @@ Markdown output.}
 
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
+
+\item{logo}{URL to the logo file that replaces the old one.}
 }
 \value{
 Markdown file and figures written do disk.
