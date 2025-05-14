@@ -8,7 +8,6 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param logo_from Path to the logo to be replaced.
 #' @param logo_to URL to the logo file that replaces the old one.
 #' @return Markdown file with updated front matter, written to disk.
 #' @examples
@@ -27,7 +26,7 @@
 #' )
 #' }
 update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
-                               sidebar_label = NULL, sidebar_order = NULL, logo_from = NULL, logo_to = NULL) {
+                               sidebar_label = NULL, sidebar_order = NULL, logo_to = NULL) {
   if (!is.null(sidebar_order)) {
     if (!is.numeric(sidebar_order)) {
       cli::cli_abort(
@@ -53,8 +52,8 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   lines <- readLines(md_file_path)
 
   # Replace logo URL
-  if (!is.null(logo_from) & !is.null(logo_to)) {
-    lines <- gsub(logo_from, logo_to, lines)
+  if (!is.null(logo_to)) {
+    lines <- gsub("man/figures/logo.png", logo_to, lines)
   }
 
   # Read front matter
