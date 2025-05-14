@@ -39,7 +39,6 @@ test_that("rmd_to_md() returns error on invalid sidebar_order", {
     ),
     class = "b3doc_error_order_invalid"
   )
-
 })
 
 test_that("example.Rmd file is accessible", {
