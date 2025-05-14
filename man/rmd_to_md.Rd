@@ -33,10 +33,6 @@ Markdown output.}
 
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
-
-\item{logo_from}{Path to the logo to be replaced.}
-
-\item{logo_to}{URL to the logo file that replaces the old one.}
 }
 \value{
 Markdown file and figures written do disk.
