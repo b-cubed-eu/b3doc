@@ -1,6 +1,44 @@
-test_that("example.Rmd file is accessible", {
-  file_path <- testthat::test_path("example.Rmd")
-  expect_true(file.exists(file_path))
+test_that("rmd_to_md() returns error on invalid sidebar_order", {
+  temp_dir <- tempdir()
+  on.exit(unlink(temp_dir, recursive = TRUE))
+
+  rmd_file <- testthat::test_path("example.Rmd")
+  md_dir <- file.path(temp_dir, "src/content/docs/software/example")
+  fig_dir <- file.path(temp_dir, "public/software/example")
+  fig_url_dir <- "/software/example/"
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = rmd_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      sidebar_order = "invalid"
+    ),
+    class = "b3doc_error_order_invalid"
+  )
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = rmd_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      sidebar_order = "1"
+    ),
+    class = "b3doc_error_order_invalid"
+  )
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = rmd_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      sidebar_order = 1.1
+    ),
+    class = "b3doc_error_order_invalid"
+  )
 })
 
 test_that("rmd_to_md() writes .md and figures to the expected directories", {
@@ -39,7 +77,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     fig_url_dir = "/software/example/",
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
-    sidebar_order = 2
+    sidebar_order = 2,
+    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
   )
 
   expect_snapshot_file(

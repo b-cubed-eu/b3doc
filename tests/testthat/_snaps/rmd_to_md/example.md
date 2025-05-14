@@ -9,6 +9,8 @@ sidebar:
   order: 2
 ---
 
+<img src="https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png" align="right" height="139" alt="Rmarkdown logo" /></a>
+
 ## Introduction
 
 The `iris` dataset is a classic dataset in the field of statistics and machine learning. It contains measurements of sepal length, sepal width, petal length, and petal width for three species of iris flowers: *Iris setosa*, *Iris virginica*, and *Iris versicolor*.
