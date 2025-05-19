@@ -37,7 +37,7 @@
 #' unlink("output", recursive = TRUE)
 #' }
 rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
-                      sidebar_label = NULL, sidebar_order = NULL) {
+                      sidebar_label = NULL, sidebar_order = NULL, logo = NULL) {
   # Get the basename of the input rmd_file without extension.
   md_name <- fs::path_file(fs::path_ext_remove(rmd_file))
 
@@ -102,7 +102,8 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
     rmd_file,
     title = title,
     sidebar_label = sidebar_label,
-    sidebar_order = sidebar_order
+    sidebar_order = sidebar_order,
+    logo = logo
   )
 
   # Reset knitting options to the original settings
