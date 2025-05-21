@@ -41,7 +41,7 @@ pak::pak("b-cubed-eu/b3doc")
 - License: MIT
 - Get [citation
   information](https://b-cubed-eu.github.io/b3doc/authors.html#citation)
-  for camtrapdp in R doing `citation("camtrapdp")`.
+  for b3doc in R doing `citation("b3doc")`.
 - Please note that this project is released with a [Contributor Code of
   Conduct](https://b-cubed-eu.github.io/b3doc/CODE_OF_CONDUCT.html). By
   participating in this project you agree to abide by its terms.
