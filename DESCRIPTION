@@ -1,7 +1,7 @@
 Package: b3doc
 Title: Tools for the B-Cubed Documentation Website
-Version: 0.0.0.9000
-Date: 2025-02-26
+Version: 0.1.0
+Date: 2025-06-12
 Authors@R: c(
     person("Sanne", "Govaert", , "sanne.govaert@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8939-1305", affiliation = "Research Institute for Nature and Forest (INBO)")),
@@ -19,7 +19,7 @@ Description: Create Markdown pages for the B-Cubed documentation website
     vignettes.
 License: MIT + file LICENSE
 URL: https://github.com/b-cubed-eu/b3doc, https://b-cubed-eu.github.io/b3doc/
-Bugreports: https://github.com/b-cubed-eu/b3doc/issues
+BugReports: https://github.com/b-cubed-eu/b3doc/issues
 Imports: 
     cli,
     fs,
