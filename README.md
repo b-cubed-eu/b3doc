@@ -29,9 +29,45 @@ You can install the development version of b3doc from
 [GitHub](https://github.com/b-cubed-eu/b3doc) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("b-cubed-eu/b3doc")
+# install.packages("remotes")
+remotes::install_github("b-cubed-eu/b3doc")
 ```
+
+## Usage
+
+Here we use b3doc to read a
+[vignette](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd),
+run its code and output a Markdown file:
+
+``` r
+library(b3doc)
+
+# Load packages used in the Rmd file
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(tidyterra)
+
+# Convert Rmd to Markdown
+rmd_to_md(
+  rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd",
+  md_dir = "output/src/content/docs/software/gcube",
+  fig_dir = "output/public/software/gcube",
+  fig_url_dir = "/software/gcube/",
+  title = "2. Occurrence process",
+  sidebar_label = "occurrence-process",
+  sidebar_order = 2
+)
+
+# Clean up (don't do this if you want to keep your files)
+unlink("output", recursive = TRUE)
+```
+
+In production, this code is run as part of a
+[script](https://github.com/b-cubed-eu/documentation/blob/main/src/rmd_to_md/rmd_to_md.Rmd)
+to update the [B-Cubed documentation website](https://docs.b-cubed.eu).
+Its static website generator then builds the site, using the metadata we
+provided (such as `sidebar_label`).
 
 ## Meta
 
