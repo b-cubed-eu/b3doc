@@ -38,7 +38,7 @@ remotes::install_github("b-cubed-eu/b3doc")
 
 ## Usage
 
-This is an example of how `b3doc` can be used in [b-cubed-eu/documentation](https://github.com/b-cubed-eu/documentation/tree/main). The example shows how to convert an R Markdown file to a Markdown file with the necessary metadata for the [B-Cubed documentation website](https://docs.b-cubed.eu) website.
+Here we use b3doc to read a [vignette](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd), run its code and output a Markdown file:
 
 ``` r
 library(b3doc)
