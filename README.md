@@ -10,6 +10,7 @@
 coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
 [![repo
 status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15649519.svg)](https://doi.org/10.5281/zenodo.15649519)
 <!-- badges: end -->
 
 b3doc is an R package to create Markdown pages for the [B-Cubed
