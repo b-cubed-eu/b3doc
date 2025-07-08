@@ -59,8 +59,25 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   # Read front matter
   frontmatter_start <- which(lines == "---")[1]
   frontmatter_end <- which(lines == "---")[2]
-  frontmatter_char <- lines[(frontmatter_start + 1):(frontmatter_end - 1)]
-  frontmatter <- yaml::yaml.load(frontmatter_char)
+
+  # Get current front matter if it exists
+  if (is.na(frontmatter_start) && is.na(frontmatter_end)) {
+    # No existing front matter
+    frontmatter_end <- 1
+    frontmatter <- NULL
+
+    # Set up for writing updated front matter
+    first_lines <- "---"
+    last_lines <- c("---\n", lines[frontmatter_end:length(lines)])
+  } else {
+    # Existing front matter
+    frontmatter_char <- lines[(frontmatter_start + 1):(frontmatter_end - 1)]
+    frontmatter <- yaml::yaml.load(frontmatter_char)
+
+    # Set up for writing updated front matter
+    first_lines <- lines[1:frontmatter_start]
+    last_lines <- lines[frontmatter_end:length(lines)]
+  }
 
   # Update front matter
   if (!is.null(title)) {frontmatter$title <- title}
@@ -83,11 +100,11 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   # as.yaml() adds a a newline character at the end: remove newline
   new_frontmatter <- gsub("\n$", "", new_frontmatter)
 
-  # Write front matter
+  # Add updated front matter to markdown
   updated_lines <- c(
-    lines[1:frontmatter_start],
+    first_lines,
     new_frontmatter,
-    lines[frontmatter_end:length(lines)]
+    last_lines
   )
 
   # Write the updated file
