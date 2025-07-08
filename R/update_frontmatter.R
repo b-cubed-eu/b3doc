@@ -61,7 +61,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   frontmatter_end <- which(lines == "---")[2]
 
   # Get current front matter if it exists
-  if (is.na(frontmatter_start) && is.na(frontmatter_end)) {
+  if (is.na(frontmatter_start) || is.na(frontmatter_end)) {
     # No existing front matter
     frontmatter_end <- 1
     frontmatter <- NULL
