@@ -218,6 +218,25 @@ test_that("rmd_to_md() writes the expected markdown, including custom
       gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
     }
   )
+
+  # Test url
+  rmd_to_md(
+    rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/63-use-----for-line-in-readme/README.md",
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    title = "Introduction",
+    sidebar_label = "Introduction",
+    sidebar_order = 1,
+    logo = "https://b-cubed-eu.github.io/dubicube/logo.png"
+  )
+
+  expect_snapshot_file(
+    file.path(expected_md_dir, "README.md"),
+    transform = function(x) {
+      gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
+    }
+  )
 })
 
 test_that("rmd_to_md() resets knitting options to the original settings", {
