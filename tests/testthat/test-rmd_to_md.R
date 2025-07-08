@@ -70,6 +70,7 @@ test_that("rmd_to_md() writes the expected markdown, including custom
   expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
   on.exit(unlink(temp_dir, recursive = TRUE))
 
+  # Test Rmd with front matter
   rmd_to_md(
     rmd_file = testthat::test_path("example.Rmd"),
     md_dir = expected_md_dir,
@@ -83,6 +84,44 @@ test_that("rmd_to_md() writes the expected markdown, including custom
 
   expect_snapshot_file(
     file.path(expected_md_dir, "example.md"),
+    transform = function(x) {
+      gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
+    }
+  )
+
+  # Test md with front matter
+  rmd_to_md(
+    rmd_file = testthat::test_path("example_md.md"),
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    title = "Custom title",
+    sidebar_label = "Custom sidebar label",
+    sidebar_order = 2,
+    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+  )
+
+  expect_snapshot_file(
+    file.path(expected_md_dir, "example_md.md"),
+    transform = function(x) {
+      gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
+    }
+  )
+
+  # Test md without front matter
+  rmd_to_md(
+    rmd_file = testthat::test_path("example_md_nofront.md"),
+    md_dir = expected_md_dir,
+    fig_dir = file.path(temp_dir, "public/software/example"),
+    fig_url_dir = "/software/example/",
+    title = "Custom title",
+    sidebar_label = "Custom sidebar label",
+    sidebar_order = 2,
+    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+  )
+
+  expect_snapshot_file(
+    file.path(expected_md_dir, "example_md_nofront.md"),
     transform = function(x) {
       gsub("\\d{4}-\\d{2}-\\d{2}", "<date>", x)
     }
