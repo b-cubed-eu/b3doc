@@ -63,12 +63,11 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   # Get current front matter if it exists
   if (is.na(frontmatter_start) || is.na(frontmatter_end)) {
     # No existing front matter
-    frontmatter_end <- 1
     frontmatter <- NULL
 
     # Set up for writing updated front matter
     first_lines <- "---"
-    last_lines <- c("---\n", lines[frontmatter_end:length(lines)])
+    last_lines <- c("---\n", lines)
   } else {
     # Existing front matter
     frontmatter_char <- lines[(frontmatter_start + 1):(frontmatter_end - 1)]
