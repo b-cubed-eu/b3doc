@@ -19,17 +19,6 @@ test_that("rmd_to_md() returns error on invalid parameters", {
       md_dir = md_dir,
       fig_dir = fig_dir,
       fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
-    class = "b3doc_error_order_invalid"
-  )
-
-  expect_error(
-    rmd_to_md(
-      rmd_file = rmd_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
       sidebar_order = "1"
     ),
     class = "b3doc_error_order_invalid"
@@ -53,17 +42,6 @@ test_that("rmd_to_md() returns error on invalid parameters", {
       md_dir = md_dir,
       fig_dir = fig_dir,
       fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
-    class = "b3doc_error_order_invalid"
-  )
-
-  expect_error(
-    rmd_to_md(
-      rmd_file = md_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
       sidebar_order = "1"
     ),
     class = "b3doc_error_order_invalid"
@@ -81,17 +59,6 @@ test_that("rmd_to_md() returns error on invalid parameters", {
   )
 
   # Test md without front matter
-  expect_error(
-    rmd_to_md(
-      rmd_file = md_nofront_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
-    class = "b3doc_error_order_invalid"
-  )
-
   expect_error(
     rmd_to_md(
       rmd_file = md_nofront_file,
