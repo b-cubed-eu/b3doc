@@ -12,7 +12,7 @@ rmd_to_md(
   title = NULL,
   sidebar_label = NULL,
   sidebar_order = NULL,
-  logo = NULL
+  replace = NULL
 )
 }
 \arguments{
@@ -33,7 +33,8 @@ Markdown output.}
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{logo}{URL to the logo file that replaces \code{"man/figures/logo.png"}.}
+\item{replace}{Set \code{key = value} pairs to replace all \code{key} strings by their
+\code{value}.}
 }
 \value{
 Markdown file and figures written do disk.

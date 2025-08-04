@@ -171,7 +171,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" =
+      "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    )
   )
 
   expect_snapshot_file(
@@ -190,7 +193,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" =
+        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    )
   )
 
   expect_snapshot_file(
@@ -209,7 +215,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" =
+        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    )
   )
 
   expect_snapshot_file(
@@ -228,7 +237,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Introduction",
     sidebar_label = "Introduction",
     sidebar_order = 1,
-    logo = "https://b-cubed-eu.github.io/dubicube/logo.png"
+    replace = c(
+      "man/figures/logo.png" =
+        "https://b-cubed-eu.github.io/dubicube/logo.png"
+    )
   )
 
   expect_snapshot_file(

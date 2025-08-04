@@ -10,7 +10,7 @@ update_frontmatter(
   title = NULL,
   sidebar_label = NULL,
   sidebar_order = NULL,
-  logo = NULL
+  replace = NULL
 )
 }
 \arguments{
@@ -25,7 +25,8 @@ update_frontmatter(
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{logo}{URL to the logo file that replaces \code{"man/figures/logo.png"}.}
+\item{replace}{Set \code{key = value} pairs to replace all \code{key} strings by their
+\code{value}.}
 }
 \value{
 Markdown file with updated front matter, written to disk.
@@ -45,7 +46,9 @@ update_frontmatter(
   ),
   title = "2. Occurrence process",
   sidebar_label = "Occurrence process",
-  sidebar_order = 2
+  sidebar_order = 2;
+  replace = c("### Changing number of occurrences over time" =
+              "### How to change the number of occurrences over time")
 )
 }
 }

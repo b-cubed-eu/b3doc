@@ -8,7 +8,8 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param logo URL to the logo file that replaces `"man/figures/logo.png"`.
+#' @param replace Set `key = value` pairs to replace all `key` strings by their
+#' `value`.
 #' @return Markdown file with updated front matter, written to disk.
 #' @examples
 #' \dontrun{
@@ -22,12 +23,14 @@
 #'   ),
 #'   title = "2. Occurrence process",
 #'   sidebar_label = "Occurrence process",
-#'   sidebar_order = 2
+#'   sidebar_order = 2;
+#'   replace = c("### Changing number of occurrences over time" =
+#'               "### How to change the number of occurrences over time")
 #' )
 #' }
 update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
                                sidebar_label = NULL, sidebar_order = NULL,
-                               logo = NULL) {
+                               replace = NULL) {
   if (!is.null(sidebar_order)) {
     if (!is.numeric(sidebar_order)) {
       cli::cli_abort(
@@ -53,8 +56,8 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   lines <- readLines(md_file_path)
 
   # Replace logo URL
-  if (!is.null(logo)) {
-    lines <- gsub("man/figures/logo.png", logo, lines)
+  if (!is.null(replace)) {
+    lines <- stringr::str_replace_all(lines, replace)
   }
 
   # Read front matter
@@ -85,7 +88,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   if (!is.null(sidebar_label)) {frontmatter$sidebar$label <- sidebar_label}
   if (!is.null(sidebar_order)) {
     frontmatter$sidebar$order <- as.integer(sidebar_order)
-    }
+  }
   if (R.utils::isUrl(rmd_file)) {
     # Transform original file path from raw to edit mode to add as source
     rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
@@ -96,7 +99,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   # as.yaml() converts the date to a string with quotes; remove quotes
   new_frontmatter <- gsub(
     "lastUpdated: '(.*)'", "lastUpdated: \\1", new_frontmatter
-    )
+  )
   # as.yaml() adds a a newline character at the end: remove newline
   new_frontmatter <- gsub("\n$", "", new_frontmatter)
 
