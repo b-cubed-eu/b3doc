@@ -1,6 +1,6 @@
 Package: b3doc
 Title: Tools for the B-Cubed Documentation Website
-Version: 0.1.0.9000
+Version: 0.1.0
 Date: 2025-06-12
 Authors@R: c(
     person("Sanne", "Govaert", , "sanne.govaert@inbo.be", role = c("aut", "cre"),
@@ -9,6 +9,8 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-8442-8025", affiliation = "Research Institute for Nature and Forest (INBO)")),
     person("Pieter", "Huybrechts", , "pieter.huybrechts@inbo.be", role = "aut",
            comment = c(ORCID = "0000-0002-6658-6062", affiliation = "Research Institute for Nature and Forest (INBO)")),
+          person("Ward", "Langeraert", , "ward.langeraert@inbo.be", role = "aut",
+           comment = c(ORCID = "0000-0002-5900-8109", affiliation = "Research Institute for Nature and Forest (INBO)")), 
     person("Research Institute for Nature and Forest (INBO)", role = "cph",
            comment = c(ROR = "00j54wy13")),
     person("European Union", role = "fnd",
