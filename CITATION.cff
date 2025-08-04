@@ -8,7 +8,7 @@ message: 'To cite package "b3doc" in publications use:'
 type: software
 license: MIT
 title: 'b3doc: Tools for the B-Cubed Documentation Website'
-version: 0.1.1
+version: 0.1.0
 abstract: Create Markdown pages for the B-Cubed documentation website (<https://docs.b-cubed.eu>)
   from external R Markdown files, such as vignettes.
 authors:

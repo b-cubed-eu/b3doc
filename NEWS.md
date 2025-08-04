@@ -1,7 +1,5 @@
 # b3doc (development version)
 
-# b3doc 0.1.1
-
 * `update_frontmatter()` can now handle .md files (#19).
 
 # b3doc 0.1.0
