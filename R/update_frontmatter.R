@@ -26,7 +26,8 @@
 #' )
 #' }
 update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
-                               sidebar_label = NULL, sidebar_order = NULL, logo = NULL) {
+                               sidebar_label = NULL, sidebar_order = NULL,
+                               logo = NULL) {
   if (!is.null(sidebar_order)) {
     if (!is.numeric(sidebar_order)) {
       cli::cli_abort(
