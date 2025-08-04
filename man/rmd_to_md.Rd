@@ -60,7 +60,9 @@ rmd_to_md(
   fig_url_dir = "/software/gcube/",
   title = "2. Occurrence process",
   sidebar_label = "occurrence-process",
-  sidebar_order = 2
+  sidebar_order = 2,
+  replace = c("### Changing number of occurrences over time" =
+              "### How to change the number of occurrences over time")
 )
 
 # Clean up (don't do this if you want to keep your files)
