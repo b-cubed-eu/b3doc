@@ -175,8 +175,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
       "man/figures/logo.png" =
       "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
-      "Iris" = "Rose",
-      "iris" = "rose"
+      "Iris" = "Rosa",
+      "iris" = "rosa"
     )
   )
 
@@ -200,8 +200,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
       "man/figures/logo.png" =
         "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
-      "Iris" = "Rose",
-      "iris" = "rose"
+      "Iris" = "Rosa",
+      "iris" = "rosa"
     )
   )
 
@@ -225,8 +225,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
       "man/figures/logo.png" =
         "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
-      "Iris" = "Rose",
-      "iris" = "rose"
+      "Iris" = "Rosa",
+      "iris" = "rosa"
     )
   )
 
@@ -250,8 +250,8 @@ test_that("rmd_to_md() writes the expected markdown, including custom
       "man/figures/logo.png" =
         "https://b-cubed-eu.github.io/dubicube/logo.png",
       "## Introduction" = "## Let's start!",
-      "Iris" = "Rose",
-      "iris" = "rose"
+      "Iris" = "Rosa",
+      "iris" = "rosa"
     )
   )
 
