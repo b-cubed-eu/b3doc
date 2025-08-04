@@ -135,7 +135,7 @@ test_that("rmd_to_md() writes .md and figures to the expected directories", {
     fig_url_dir = "/software/example/"
   )
 
-  # Test Rmd with front matter
+  # Test md without front matter
   rmd_to_md(
     rmd_file = testthat::test_path("example_md_nofront.md"),
     md_dir = expected_md_dir,
@@ -266,7 +266,7 @@ test_that("rmd_to_md() resets knitting options to the original settings", {
 
   expect_identical(original_opts_knit, new_opts_knit)
 
-  # Test md with front matter
+  # Test md without front matter
   rmd_to_md(
     rmd_file = testthat::test_path("example_md_nofront.md"),
     md_dir = file.path(temp_dir, "src/content/docs/software/example"),
