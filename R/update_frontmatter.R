@@ -8,8 +8,8 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param replace Set `key = value` string pairs to replace all `key` strings
-#' by their `value`.
+#' @param replace Named character vector indicating `key:value` pairs. All
+#' `key` strings are replaced by their `value`.
 #' @return Markdown file with updated front matter, written to disk.
 #' @examples
 #' \dontrun{
@@ -55,10 +55,20 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   if (!is.null(replace) && !is.character(replace)) {
     cli::cli_abort(
       c(
-        "{.arg replace} must be a string.",
+        "{.arg replace} must be a named character vector.",
         "i" = "{.arg replace} is a {.cls {class(replace)}}."
       ),
-      class = "b3doc_error_replace_invalid"
+      class = "b3doc_error_replace_class"
+    )
+  }
+
+  if (!is.null(replace) && is.null(names(replace))) {
+    cli::cli_abort(
+      c(
+        "{.arg replace} must be a named character vector.",
+        "i" = "Please provide c('key' = 'value') pairs."
+      ),
+      class = "b3doc_error_replace_pairs"
     )
   }
 

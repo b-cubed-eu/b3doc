@@ -91,7 +91,18 @@ test_that("rmd_to_md() returns error on invalid parameters", {
       fig_url_dir = fig_url_dir,
       replace = list("one" = "1", "two" = "2")
     ),
-    class = "b3doc_error_replace_invalid"
+    class = "b3doc_error_replace_class"
+  )
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = rmd_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = c("one", "two")
+    ),
+    class = "b3doc_error_replace_pairs"
   )
 
   # Test md with front matter
@@ -103,7 +114,18 @@ test_that("rmd_to_md() returns error on invalid parameters", {
       fig_url_dir = fig_url_dir,
       replace = data.frame("one" = "1", "two" = "2")
     ),
-    class = "b3doc_error_replace_invalid"
+    class = "b3doc_error_replace_class"
+  )
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = md_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = c("one", "two")
+    ),
+    class = "b3doc_error_replace_pairs"
   )
 
   # Test md with front matter
@@ -115,7 +137,18 @@ test_that("rmd_to_md() returns error on invalid parameters", {
       fig_url_dir = fig_url_dir,
       replace = list("one", "two", "three")
     ),
-    class = "b3doc_error_replace_invalid"
+    class = "b3doc_error_replace_class"
+  )
+
+  expect_error(
+    rmd_to_md(
+      rmd_file = md_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = c("one", "two")
+    ),
+    class = "b3doc_error_replace_pairs"
   )
 })
 

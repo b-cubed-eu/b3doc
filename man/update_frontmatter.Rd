@@ -25,8 +25,8 @@ update_frontmatter(
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{replace}{Set \code{key = value} pairs to replace all \code{key} strings by their
-\code{value}.}
+\item{replace}{Named character vector indicating \code{key:value} pairs. All
+\code{key} strings are replaced by their \code{value}.}
 }
 \value{
 Markdown file with updated front matter, written to disk.
