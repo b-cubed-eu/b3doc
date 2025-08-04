@@ -2,7 +2,7 @@
 
 # b3doc 0.1.1
 
-* Make sure `update_frontmatter()` can handle .md files #19
+* `update_frontmatter()` can now handle .md files (#19).
 
 # b3doc 0.1.0
 
