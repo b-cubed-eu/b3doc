@@ -173,7 +173,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     sidebar_order = 2,
     replace = c(
       "man/figures/logo.png" =
-      "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+      "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rose",
+      "iris" = "rose"
     )
   )
 
@@ -195,7 +198,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     sidebar_order = 2,
     replace = c(
       "man/figures/logo.png" =
-        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rose",
+      "iris" = "rose"
     )
   )
 
@@ -217,7 +223,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     sidebar_order = 2,
     replace = c(
       "man/figures/logo.png" =
-        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+        "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rose",
+      "iris" = "rose"
     )
   )
 
@@ -239,7 +248,10 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     sidebar_order = 1,
     replace = c(
       "man/figures/logo.png" =
-        "https://b-cubed-eu.github.io/dubicube/logo.png"
+        "https://b-cubed-eu.github.io/dubicube/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rose",
+      "iris" = "rose"
     )
   )
 
