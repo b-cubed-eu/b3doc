@@ -8,8 +8,8 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param replace Set `key = value` pairs to replace all `key` strings by their
-#' `value`.
+#' @param replace Set `key = value` string pairs to replace all `key` strings
+#' by their `value`.
 #' @return Markdown file with updated front matter, written to disk.
 #' @examples
 #' \dontrun{
@@ -50,6 +50,16 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
         class = "b3doc_error_order_invalid"
       )
     }
+  }
+
+  if (!is.null(replace) && !is.character(replace)) {
+    cli::cli_abort(
+      c(
+        "{.arg replace} must be a string.",
+        "i" = "{.arg replace} is a {.cls {class(replace)}}."
+      ),
+      class = "b3doc_error_replace_invalid"
+    )
   }
 
   # Read markdown

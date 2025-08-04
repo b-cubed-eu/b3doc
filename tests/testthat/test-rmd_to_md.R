@@ -1,4 +1,4 @@
-test_that("rmd_to_md() returns error on invalid sidebar_order", {
+test_that("rmd_to_md() returns error on invalid parameters", {
   temp_dir <- tempdir()
   on.exit(unlink(temp_dir, recursive = TRUE))
 
@@ -9,6 +9,8 @@ test_that("rmd_to_md() returns error on invalid sidebar_order", {
   md_dir <- file.path(temp_dir, "src/content/docs/software/example")
   fig_dir <- file.path(temp_dir, "public/software/example")
   fig_url_dir <- "/software/example/"
+
+  # 1. Sidebar order
 
   # Test Rmd with front matter
   expect_error(
@@ -110,6 +112,43 @@ test_that("rmd_to_md() returns error on invalid sidebar_order", {
       sidebar_order = 1.1
     ),
     class = "b3doc_error_order_invalid"
+  )
+
+  # 2. Replace
+  # Test Rmd with front matter
+  expect_error(
+    rmd_to_md(
+      rmd_file = rmd_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = list("one" = "1", "two" = "2")
+    ),
+    class = "b3doc_error_replace_invalid"
+  )
+
+  # Test md with front matter
+  expect_error(
+    rmd_to_md(
+      rmd_file = md_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = data.frame("one" = "1", "two" = "2")
+    ),
+    class = "b3doc_error_replace_invalid"
+  )
+
+  # Test md with front matter
+  expect_error(
+    rmd_to_md(
+      rmd_file = md_file,
+      md_dir = md_dir,
+      fig_dir = fig_dir,
+      fig_url_dir = fig_url_dir,
+      replace = list("one", "two", "three")
+    ),
+    class = "b3doc_error_replace_invalid"
   )
 })
 
