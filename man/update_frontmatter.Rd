@@ -6,7 +6,7 @@
 \usage{
 update_frontmatter(
   md_file_path,
-  rmd_file,
+  rmd_file_path,
   title = NULL,
   sidebar_label = NULL,
   sidebar_order = NULL,
@@ -16,7 +16,8 @@ update_frontmatter(
 \arguments{
 \item{md_file_path}{Path to the Markdown file on disk.}
 
-\item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
+\item{rmd_file_path}{Path to the R Markdown file, either a local path or a
+URL.}
 
 \item{title}{Title of the article, to show on top of the page.}
 
@@ -25,14 +26,16 @@ update_frontmatter(
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{replace}{Named character vector indicating \code{key:value} pairs. All
-\code{key} strings are replaced by their \code{value}.}
+\item{replace}{Named character vector with \code{c("key" = "value")} pairs.
+All occurrences of \code{"key"} in the content of the Markdown file will be
+replaced by their respective \code{"value"} (before updating the front matter).}
 }
 \value{
-Markdown file with updated front matter, written to disk.
+Markdown file with updated front matter (and optionally content),
+written to disk.
 }
 \description{
-Updates the front matter and replaces the logo of a Markdown file on disk.
+Updates the front matter (and optionally content) of a Markdown file on disk.
 }
 \examples{
 \dontrun{
@@ -40,7 +43,7 @@ update_frontmatter(
   md_file_path = file.path(
     "output/src/content/docs/software/gcube/occurrence-process.md"
   ),
-  rmd_file = file.path(
+  rmd_file_path = file.path(
     "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main",
     "vignettes/articles/occurrence-process.Rmd"
   ),

@@ -1,6 +1,6 @@
 #' Update front matter
 #'
-#' Updates the front matter and replaces the logo of a Markdown file on disk.
+#' Updates the front matter (and optionally content) of a Markdown file on disk.
 #'
 #' @param md_file_path Path to the Markdown file on disk.
 #' @param rmd_file_path Path to the R Markdown file, either a local path or a
@@ -9,9 +9,11 @@
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param replace Named character vector indicating `key:value` pairs. All
-#' `key` strings are replaced by their `value`.
-#' @return Markdown file with updated front matter, written to disk.
+#' @param replace Named character vector with `c("key" = "value")` pairs.
+#'   All occurrences of `"key"` in the content of the Markdown file will be
+#'   replaced by their respective `"value"` (before updating the front matter).
+#' @return Markdown file with updated front matter (and optionally content),
+#'   written to disk.
 #' @examples
 #' \dontrun{
 #' update_frontmatter(
@@ -76,7 +78,7 @@ update_frontmatter <- function(md_file_path, rmd_file_path, title = NULL,
   # Read markdown
   lines <- readLines(md_file_path)
 
-  # Replace logo URL
+  # Replace content
   if (!is.null(replace)) {
     lines <- stringr::str_replace_all(lines, replace)
   }

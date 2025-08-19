@@ -33,8 +33,9 @@ Markdown output.}
 \item{sidebar_order}{Number indicating the order of the article in the
 sidebar.}
 
-\item{replace}{Named character vector indicating \code{key:value} pairs. All
-\code{key} strings are replaced by their \code{value}.}
+\item{replace}{Named character vector with \code{c("key" = "value")} pairs.
+All occurrences of \code{"key"} in the content of the Markdown file will be
+replaced by their respective \code{"value"} (before updating the front matter).}
 }
 \value{
 Markdown file and figures written do disk.
