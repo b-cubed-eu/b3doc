@@ -2,8 +2,8 @@
 #'
 #' Updates the front matter (and optionally content) of a Markdown file on disk.
 #'
-#' @param md_file_path Path to the Markdown file on disk.
-#' @param rmd_file_path Path to the R Markdown file, either a local path or a
+#' @param md_file Path to the Markdown file on disk.
+#' @param rmd_file Path to the R Markdown file, either a local path or a
 #'   URL.
 #' @param title Title of the article, to show on top of the page.
 #' @param sidebar_label Title in the sidebar.
@@ -17,10 +17,10 @@
 #' @examples
 #' \dontrun{
 #' update_frontmatter(
-#'   md_file_path = file.path(
+#'   md_file = file.path(
 #'     "output/src/content/docs/software/gcube/occurrence-process.md"
 #'   ),
-#'   rmd_file_path = file.path(
+#'   rmd_file = file.path(
 #'     "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main",
 #'     "vignettes/articles/occurrence-process.Rmd"
 #'   ),
@@ -31,7 +31,7 @@
 #'               "### How to change the number of occurrences over time")
 #' )
 #' }
-update_frontmatter <- function(md_file_path, rmd_file_path, title = NULL,
+update_frontmatter <- function(md_file, rmd_file, title = NULL,
                                sidebar_label = NULL, sidebar_order = NULL,
                                replace = NULL) {
   if (!is.null(sidebar_order)) {
@@ -76,7 +76,7 @@ update_frontmatter <- function(md_file_path, rmd_file_path, title = NULL,
   }
 
   # Read markdown
-  lines <- readLines(md_file_path)
+  lines <- readLines(md_file)
 
   # Replace content
   if (!is.null(replace)) {
@@ -112,13 +112,11 @@ update_frontmatter <- function(md_file_path, rmd_file_path, title = NULL,
   if (!is.null(sidebar_order)) {
     frontmatter$sidebar$order <- as.integer(sidebar_order)
   }
-  if (R.utils::isUrl(rmd_file_path)) {
+  if (R.utils::isUrl(rmd_file)) {
     # Transform original file path from raw to edit mode to add as source
-    rmd_file_path <- gsub(
-      "raw.githubusercontent.com", "github.com", rmd_file_path
-    )
-    rmd_file_path <- gsub("/refs/heads/", "/blob/", rmd_file_path)
-    frontmatter$source <- rmd_file_path
+    rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
+    rmd_file <- gsub("/refs/heads/", "/blob/", rmd_file)
+    frontmatter$source <- rmd_file
   }
   new_frontmatter <- yaml::as.yaml(frontmatter)
   # as.yaml() converts the date to a string with quotes; remove quotes
@@ -136,5 +134,5 @@ update_frontmatter <- function(md_file_path, rmd_file_path, title = NULL,
   )
 
   # Write the updated file
-  writeLines(updated_lines, md_file_path)
+  writeLines(updated_lines, md_file)
 }
