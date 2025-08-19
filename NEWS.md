@@ -1,6 +1,6 @@
 # b3doc (development version)
 
-* `update_frontmatter()` can now handle .md files (#20).
+* `update_frontmatter()` can now handle `.md` files (#20).
 * `update_frontmatter()` now has a `replace` argument that replaces all `key`s with their `value`. This argument now replaces argument `logo` (#22).
 
 # b3doc 0.1.0

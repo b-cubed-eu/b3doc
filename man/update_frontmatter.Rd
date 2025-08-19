@@ -5,8 +5,8 @@
 \title{Update front matter}
 \usage{
 update_frontmatter(
-  md_file_path,
-  rmd_file_path,
+  md_file,
+  rmd_file,
   title = NULL,
   sidebar_label = NULL,
   sidebar_order = NULL,
@@ -14,9 +14,9 @@ update_frontmatter(
 )
 }
 \arguments{
-\item{md_file_path}{Path to the Markdown file on disk.}
+\item{md_file}{Path to the Markdown file on disk.}
 
-\item{rmd_file_path}{Path to the R Markdown file, either a local path or a
+\item{rmd_file}{Path to the R Markdown file, either a local path or a
 URL.}
 
 \item{title}{Title of the article, to show on top of the page.}
@@ -40,10 +40,10 @@ Updates the front matter (and optionally content) of a Markdown file on disk.
 \examples{
 \dontrun{
 update_frontmatter(
-  md_file_path = file.path(
+  md_file = file.path(
     "output/src/content/docs/software/gcube/occurrence-process.md"
   ),
-  rmd_file_path = file.path(
+  rmd_file = file.path(
     "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main",
     "vignettes/articles/occurrence-process.Rmd"
   ),
