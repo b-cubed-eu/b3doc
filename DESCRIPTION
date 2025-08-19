@@ -27,6 +27,7 @@ Imports:
     fs,
     knitr,
     R.utils,
+    stringr,
     utils,
     yaml
 Suggests: 

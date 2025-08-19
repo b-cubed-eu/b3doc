@@ -1,115 +1,79 @@
-test_that("rmd_to_md() returns error on invalid sidebar_order", {
+test_that("rmd_to_md() returns error on invalid parameters", {
   temp_dir <- tempdir()
   on.exit(unlink(temp_dir, recursive = TRUE))
-
   rmd_file <- testthat::test_path("example.Rmd")
   md_file <- testthat::test_path("example_md.md")
-  md_nofront_file <- testthat::test_path("example_md_nofront.md")
-
+  md_nf_file <- testthat::test_path("example_md_nofront.md")
   md_dir <- file.path(temp_dir, "src/content/docs/software/example")
   fig_dir <- file.path(temp_dir, "public/software/example")
   fig_url_dir <- "/software/example/"
 
-  # Test Rmd with front matter
+  # 1. Sidebar order
   expect_error(
-    rmd_to_md(
-      rmd_file = rmd_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
+    rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, sidebar_order = "1"),
+    class = "b3doc_error_order_invalid"
+  )
+  expect_error(
+    rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, sidebar_order = 1.1),
     class = "b3doc_error_order_invalid"
   )
 
   expect_error(
-    rmd_to_md(
-      rmd_file = rmd_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "1"
-    ),
+    rmd_to_md(md_file, md_dir, fig_dir, fig_url_dir, sidebar_order = "1"),
+    class = "b3doc_error_order_invalid"
+  )
+  expect_error(
+    rmd_to_md(md_file, md_dir, fig_dir, fig_url_dir, sidebar_order = 1.1),
     class = "b3doc_error_order_invalid"
   )
 
   expect_error(
-    rmd_to_md(
-      rmd_file = rmd_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = 1.1
-    ),
+    rmd_to_md(md_nf_file, md_dir, fig_dir, fig_url_dir, sidebar_order = "1"),
+    class = "b3doc_error_order_invalid"
+  )
+  expect_error(
+    rmd_to_md(md_nf_file, md_dir, fig_dir, fig_url_dir, sidebar_order = 1.1),
     class = "b3doc_error_order_invalid"
   )
 
-  # Test md with front matter
+  # 2. Replace
   expect_error(
-    rmd_to_md(
-      rmd_file = md_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
-    class = "b3doc_error_order_invalid"
+    rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, replace = list("a" = "b")),
+    class = "b3doc_error_replace_class"
+  )
+  expect_error(
+    rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, replace = data.frame()),
+    class = "b3doc_error_replace_class"
+  )
+  expect_error(
+    rmd_to_md(rmd_file, md_dir, fig_dir, fig_url_dir, replace = c("a", "b")),
+    class = "b3doc_error_replace_pairs"
   )
 
   expect_error(
-    rmd_to_md(
-      rmd_file = md_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "1"
-    ),
-    class = "b3doc_error_order_invalid"
+    rmd_to_md(md_file, md_dir, fig_dir, fig_url_dir, replace = list("a" = "b")),
+    class = "b3doc_error_replace_class"
+  )
+  expect_error(
+    rmd_to_md(md_file, md_dir, fig_dir, fig_url_dir, replace = data.frame()),
+    class = "b3doc_error_replace_class"
+  )
+  expect_error(
+    rmd_to_md(md_file, md_dir, fig_dir, fig_url_dir, replace = c("a", "b")),
+    class = "b3doc_error_replace_pairs"
   )
 
   expect_error(
-    rmd_to_md(
-      rmd_file = md_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = 1.1
-    ),
-    class = "b3doc_error_order_invalid"
+    rmd_to_md(md_nf_file, md_dir, fig_dir, fig_url_dir, replace = list("a" = "b")),
+    class = "b3doc_error_replace_class"
   )
-
-  # Test md without front matter
   expect_error(
-    rmd_to_md(
-      rmd_file = md_nofront_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "invalid"
-    ),
-    class = "b3doc_error_order_invalid"
+    rmd_to_md(md_nf_file, md_dir, fig_dir, fig_url_dir, replace = data.frame()),
+    class = "b3doc_error_replace_class"
   )
-
   expect_error(
-    rmd_to_md(
-      rmd_file = md_nofront_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = "1"
-    ),
-    class = "b3doc_error_order_invalid"
-  )
-
-  expect_error(
-    rmd_to_md(
-      rmd_file = md_nofront_file,
-      md_dir = md_dir,
-      fig_dir = fig_dir,
-      fig_url_dir = fig_url_dir,
-      sidebar_order = 1.1
-    ),
-    class = "b3doc_error_order_invalid"
+    rmd_to_md(md_nf_file, md_dir, fig_dir, fig_url_dir, replace = c("a", "b")),
+    class = "b3doc_error_replace_pairs"
   )
 })
 
@@ -156,7 +120,7 @@ test_that("rmd_to_md() writes .md and figures to the expected directories", {
   )
 })
 
-test_that("rmd_to_md() writes the expected markdown, including custom
+test_that("rmd_to_md() writes the expected Markdown, including custom
            frontmatter and figure paths", {
   temp_dir <- tempdir()
   expected_md_dir <- file.path(temp_dir, "src/content/docs/software/example")
@@ -171,7 +135,12 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rosa",
+      "iris" = "rosa"
+    )
   )
 
   expect_snapshot_file(
@@ -190,7 +159,12 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rosa",
+      "iris" = "rosa"
+    )
   )
 
   expect_snapshot_file(
@@ -209,7 +183,12 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Custom title",
     sidebar_label = "Custom sidebar label",
     sidebar_order = 2,
-    logo = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png"
+    replace = c(
+      "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rosa",
+      "iris" = "rosa"
+    )
   )
 
   expect_snapshot_file(
@@ -228,7 +207,12 @@ test_that("rmd_to_md() writes the expected markdown, including custom
     title = "Introduction",
     sidebar_label = "Introduction",
     sidebar_order = 1,
-    logo = "https://b-cubed-eu.github.io/dubicube/logo.png"
+    replace = c(
+      "man/figures/logo.png" = "https://b-cubed-eu.github.io/dubicube/logo.png",
+      "## Introduction" = "## Let's start!",
+      "Iris" = "Rosa",
+      "iris" = "rosa"
+    )
   )
 
   expect_snapshot_file(

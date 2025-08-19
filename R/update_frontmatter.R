@@ -1,19 +1,23 @@
 #' Update front matter
 #'
-#' Updates the front matter and replaces the logo of a Markdown file on disk.
+#' Updates the front matter (and optionally content) of a Markdown file on disk.
 #'
-#' @param md_file_path Path to the Markdown file on disk.
-#' @param rmd_file Path to the R Markdown file, either a local path or a URL.
+#' @param md_file Path to the Markdown file on disk.
+#' @param rmd_file Path to the R Markdown file, either a local path or a
+#'   URL.
 #' @param title Title of the article, to show on top of the page.
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
 #'   sidebar.
-#' @param logo URL to the logo file that replaces `"man/figures/logo.png"`.
-#' @return Markdown file with updated front matter, written to disk.
+#' @param replace Named character vector with `c("key" = "value")` pairs.
+#'   All occurrences of `"key"` in the content of the Markdown file will be
+#'   replaced by their respective `"value"` (before updating the front matter).
+#' @return Markdown file with updated front matter (and optionally content),
+#'   written to disk.
 #' @examples
 #' \dontrun{
 #' update_frontmatter(
-#'   md_file_path = file.path(
+#'   md_file = file.path(
 #'     "output/src/content/docs/software/gcube/occurrence-process.md"
 #'   ),
 #'   rmd_file = file.path(
@@ -22,12 +26,17 @@
 #'   ),
 #'   title = "2. Occurrence process",
 #'   sidebar_label = "Occurrence process",
-#'   sidebar_order = 2
+#'   sidebar_order = 2,
+#'   replace = c(
+#'     "### Changing number of occurrences over time" =
+#'     "### How to change the number of occurrences over time",
+#'     "man/figures/logo.png" = "https://b-cubed-eu.github.io/gcube/logo.png"
+#'   )
 #' )
 #' }
-update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
+update_frontmatter <- function(md_file, rmd_file, title = NULL,
                                sidebar_label = NULL, sidebar_order = NULL,
-                               logo = NULL) {
+                               replace = NULL) {
   if (!is.null(sidebar_order)) {
     if (!is.numeric(sidebar_order)) {
       cli::cli_abort(
@@ -49,12 +58,32 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
     }
   }
 
-  # Read markdown
-  lines <- readLines(md_file_path)
+  if (!is.null(replace) && !is.character(replace)) {
+    cli::cli_abort(
+      c(
+        "{.arg replace} must be a named character vector.",
+        "i" = "{.arg replace} is a {.cls {class(replace)}}."
+      ),
+      class = "b3doc_error_replace_class"
+    )
+  }
 
-  # Replace logo URL
-  if (!is.null(logo)) {
-    lines <- gsub("man/figures/logo.png", logo, lines)
+  if (!is.null(replace) && is.null(names(replace))) {
+    cli::cli_abort(
+      c(
+        "{.arg replace} must be a named character vector.",
+        "i" = "Please provide {.code c(\"key\" = \"value\")} pairs."
+      ),
+      class = "b3doc_error_replace_pairs"
+    )
+  }
+
+  # Read markdown
+  lines <- readLines(md_file)
+
+  # Replace content
+  if (!is.null(replace)) {
+    lines <- stringr::str_replace_all(lines, replace)
   }
 
   # Read front matter
@@ -85,7 +114,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   if (!is.null(sidebar_label)) {frontmatter$sidebar$label <- sidebar_label}
   if (!is.null(sidebar_order)) {
     frontmatter$sidebar$order <- as.integer(sidebar_order)
-    }
+  }
   if (R.utils::isUrl(rmd_file)) {
     # Transform original file path from raw to edit mode to add as source
     rmd_file <- gsub("raw.githubusercontent.com", "github.com", rmd_file)
@@ -96,7 +125,7 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   # as.yaml() converts the date to a string with quotes; remove quotes
   new_frontmatter <- gsub(
     "lastUpdated: '(.*)'", "lastUpdated: \\1", new_frontmatter
-    )
+  )
   # as.yaml() adds a a newline character at the end: remove newline
   new_frontmatter <- gsub("\n$", "", new_frontmatter)
 
@@ -108,5 +137,5 @@ update_frontmatter <- function(md_file_path, rmd_file, title = NULL,
   )
 
   # Write the updated file
-  writeLines(updated_lines, md_file_path)
+  writeLines(updated_lines, md_file)
 }
