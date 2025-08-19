@@ -56,7 +56,7 @@ Markdown file.</p>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sidebar_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sidebar_order <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  logo <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  replace <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -95,8 +95,10 @@ Markdown output.</p></dd>
 sidebar.</p></dd>
 
 
-<dt id="arg-logo">logo<a class="anchor" aria-label="anchor" href="#arg-logo"></a></dt>
-<dd><p>URL to the logo file that replaces <code>"man/figures/logo.png"</code>.</p></dd>
+<dt id="arg-replace">replace<a class="anchor" aria-label="anchor" href="#arg-replace"></a></dt>
+<dd><p>Named character vector with <code>c("key" = "value")</code> pairs.
+All occurrences of <code>"key"</code> in the content of the Markdown file will be
+replaced by their respective <code>"value"</code> (before updating the front matter).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -120,7 +122,12 @@ sidebar.</p></dd>
 <span class="r-in"><span>  fig_url_dir <span class="op">=</span> <span class="st">"/software/gcube/"</span>,</span></span>
 <span class="r-in"><span>  title <span class="op">=</span> <span class="st">"2. Occurrence process"</span>,</span></span>
 <span class="r-in"><span>  sidebar_label <span class="op">=</span> <span class="st">"occurrence-process"</span>,</span></span>
-<span class="r-in"><span>  sidebar_order <span class="op">=</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span>  sidebar_order <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  replace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"### Changing number of occurrences over time"</span> <span class="op">=</span></span></span>
+<span class="r-in"><span>    <span class="st">"### How to change the number of occurrences over time"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"man/figures/logo.png"</span> <span class="op">=</span> <span class="st">"https://b-cubed-eu.github.io/gcube/logo.png"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Clean up (don't do this if you want to keep your files)</span></span></span>
