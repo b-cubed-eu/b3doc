@@ -69,7 +69,7 @@ update_frontmatter <- function(md_file, rmd_file, title = NULL,
     cli::cli_abort(
       c(
         "{.arg replace} must be a named character vector.",
-        "i" = "Please provide c('key' = 'value') pairs."
+        "i" = "Please provide {.code c(\"key\" = \"value\")} pairs."
       ),
       class = "b3doc_error_replace_pairs"
     )
