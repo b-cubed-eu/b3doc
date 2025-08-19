@@ -49,9 +49,12 @@ update_frontmatter(
   ),
   title = "2. Occurrence process",
   sidebar_label = "Occurrence process",
-  sidebar_order = 2;
-  replace = c("### Changing number of occurrences over time" =
-              "### How to change the number of occurrences over time")
+  sidebar_order = 2,
+  replace = c(
+    "### Changing number of occurrences over time" =
+    "### How to change the number of occurrences over time",
+    "man/figures/logo.png" = "https://b-cubed-eu.github.io/gcube/logo.png"
+  )
 )
 }
 }

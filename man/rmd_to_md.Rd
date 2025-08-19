@@ -62,8 +62,11 @@ rmd_to_md(
   title = "2. Occurrence process",
   sidebar_label = "occurrence-process",
   sidebar_order = 2,
-  replace = c("### Changing number of occurrences over time" =
-              "### How to change the number of occurrences over time")
+  replace = c(
+    "### Changing number of occurrences over time" =
+    "### How to change the number of occurrences over time",
+    "man/figures/logo.png" = "https://b-cubed-eu.github.io/gcube/logo.png"
+  )
 )
 
 # Clean up (don't do this if you want to keep your files)
