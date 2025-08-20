@@ -10,8 +10,8 @@ status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repost
 [![Release](https://img.shields.io/github/release/b-cubed-eu/b3doc.svg)](https://github.com/b-cubed-eu/b3doc/releases)
 [![b3doc status
 badge](https://b-cubed-eu.r-universe.dev/b3doc/badges/version)](https://b-cubed-eu.r-universe.dev/b3doc)
-![CRAN
-status](https://www.r-pkg.org/badges/version/b3doc)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/b3doc)](https://CRAN.R-project.org/package=b3doc)
 [![R-CMD-check](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
