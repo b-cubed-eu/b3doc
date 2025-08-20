@@ -2,13 +2,13 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
-
+ 
 cff-version: 1.2.0
 message: 'To cite package "b3doc" in publications use:'
 type: software
 license: MIT
 title: 'b3doc: Tools for the B-Cubed Documentation Website'
-version: 0.1.0
+version: 0.2.0.9000
 abstract: Create Markdown pages for the B-Cubed documentation website (<https://docs.b-cubed.eu>)
   from external R Markdown files, such as vignettes.
 authors:
@@ -27,15 +27,23 @@ authors:
   email: pieter.huybrechts@inbo.be
   orcid: https://orcid.org/0000-0002-6658-6062
   affiliation: Research Institute for Nature and Forest (INBO)
+- family-names: Langeraert
+  given-names: Ward
+  email: ward.langeraert@inbo.be
+  orcid: https://orcid.org/0000-0002-5900-8109
+  affiliation: Research Institute for Nature and Forest (INBO)
 repository-code: https://github.com/b-cubed-eu/b3doc
 url: https://b-cubed-eu.github.io/b3doc/
-date-released: '2025-02-26'
+date-released: '2025-06-12'
 contact:
 - family-names: Govaert
   given-names: Sanne
   email: sanne.govaert@inbo.be
   orcid: https://orcid.org/0000-0002-8939-1305
   affiliation: Research Institute for Nature and Forest (INBO)
+keywords:
+- r
+- r-package
 references:
 - type: software
   title: cli
@@ -91,6 +99,18 @@ references:
     email: henrikb@braju.com
   year: '2025'
   doi: 10.32614/CRAN.package.R.utils
+- type: software
+  title: stringr
+  abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
+  notes: Imports
+  url: https://stringr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=stringr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.stringr
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
