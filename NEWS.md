@@ -4,6 +4,7 @@
 
 * `update_frontmatter()` can now handle `.md` files (#20).
 * `update_frontmatter()` now has a `replace` argument that replaces all `key`s with their `value`. This argument replaces the `logo` argument (#22).
+* Add [Ward Langeraert](https://orcid.org/0000-0002-5900-8109) as author.
 
 # b3doc 0.1.0
 
