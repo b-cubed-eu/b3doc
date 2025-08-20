@@ -5,7 +5,6 @@
 #' The date this function is called upon is added to the beginning of the
 #' Markdown file.
 #'
-#' @param rmd_file Path to the R Markdown file, either a local path or a URL.
 #' @param md_dir Path to local directory to write the Markdown file to.
 #'   If it doesn't exist it will be created.
 #' @param fig_dir Path to local directory to write the figures to.

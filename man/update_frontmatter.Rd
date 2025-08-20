@@ -16,8 +16,7 @@ update_frontmatter(
 \arguments{
 \item{md_file}{Path to the Markdown file on disk.}
 
-\item{rmd_file}{Path to the R Markdown file, either a local path or a
-URL.}
+\item{rmd_file}{Path to the R Markdown file, either a local path or a URL.}
 
 \item{title}{Title of the article, to show on top of the page.}
 

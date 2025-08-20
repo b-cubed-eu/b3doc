@@ -3,8 +3,7 @@
 #' Updates the front matter (and optionally content) of a Markdown file on disk.
 #'
 #' @param md_file Path to the Markdown file on disk.
-#' @param rmd_file Path to the R Markdown file, either a local path or a
-#'   URL.
+#' @param rmd_file Path to the R Markdown file, either a local path or a URL.
 #' @param title Title of the article, to show on top of the page.
 #' @param sidebar_label Title in the sidebar.
 #' @param sidebar_order Number indicating the order of the article in the
