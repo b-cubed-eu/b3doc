@@ -2,7 +2,7 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
-
+ 
 cff-version: 1.2.0
 message: 'To cite package "b3doc" in publications use:'
 type: software
@@ -34,7 +34,7 @@ authors:
   affiliation: Research Institute for Nature and Forest (INBO)
 repository-code: https://github.com/b-cubed-eu/b3doc
 url: https://b-cubed-eu.github.io/b3doc/
-date-released: '2025-06-12'
+date-released: '2025-08-20'
 contact:
 - family-names: Govaert
   given-names: Sanne
