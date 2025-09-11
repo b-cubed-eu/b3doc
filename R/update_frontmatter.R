@@ -82,7 +82,7 @@ update_frontmatter <- function(md_file, rmd_file, title = NULL,
 
   # Replace content
   if (!is.null(replace)) {
-    lines <- stringr::str_replace_all(lines, replace)
+    lines <- stringr::str_replace_all(lines, stringr::fixed(replace))
   }
 
   # Read front matter
