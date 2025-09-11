@@ -52,7 +52,7 @@ legend("topright", legend = levels(iris$Species),
        col = 1:3, pch = 19, title = "Species")
 ```
 
-## Finding the Largest Sepal
+^## Wrong title
 
 Using base R, we can find the observation with the largest sepal length.
 

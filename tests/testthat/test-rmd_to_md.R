@@ -139,7 +139,9 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
       "Iris" = "Rosa",
-      "iris" = "rosa"
+      "iris" = "rosa",
+      "^## Wrong title" = "## Finding the Largest Sepal",
+      "^## Conclusion" = "## Beginning" # Should not be replaced
     )
   )
 
@@ -163,7 +165,10 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
       "Iris" = "Rosa",
-      "iris" = "rosa"
+      "iris" = "rosa",
+      "^## Wrong title" = "## Finding the Largest Sepal",
+      "^## Conclusion" = "## Beginning" # Should not be replaced
+
     )
   )
 
@@ -187,7 +192,9 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "man/figures/logo.png" = "https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png",
       "## Introduction" = "## Let's start!",
       "Iris" = "Rosa",
-      "iris" = "rosa"
+      "iris" = "rosa",
+      "^## Wrong title" = "## Finding the Largest Sepal",
+      "^## Conclusion" = "## Beginning" # Should not be replaced
     )
   )
 
@@ -211,7 +218,8 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "man/figures/logo.png" = "https://b-cubed-eu.github.io/dubicube/logo.png",
       "## Introduction" = "## Let's start!",
       "Iris" = "Rosa",
-      "iris" = "rosa"
+      "iris" = "rosa",
+      "^## Conclusion" = "## Beginning" # Should not be replaced
     )
   )
 
