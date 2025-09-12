@@ -141,7 +141,7 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "Iris" = "Rosa",
       "iris" = "rosa",
       "^## Wrong title" = "## Finding the Largest Sepal",
-      "^## Conclusion" = "## Beginning" # Should not be replaced
+      "^## Conclusion" = "## Since regex is not supported, I should not appear"
     )
   )
 
@@ -167,7 +167,7 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "Iris" = "Rosa",
       "iris" = "rosa",
       "^## Wrong title" = "## Finding the Largest Sepal",
-      "^## Conclusion" = "## Beginning" # Should not be replaced
+      "^## Conclusion" = "## Since regex is not supported, I should not appear"
 
     )
   )
@@ -194,7 +194,7 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "Iris" = "Rosa",
       "iris" = "rosa",
       "^## Wrong title" = "## Finding the Largest Sepal",
-      "^## Conclusion" = "## Beginning" # Should not be replaced
+      "^## Conclusion" = "## Since regex is not supported, I should not appear"
     )
   )
 
