@@ -1,5 +1,7 @@
 # b3doc (development version)
 
+* `update_frontmatter()`'s `replace` argument no longer supports regex, avoiding the use of escape characters and unintended broad changes (#25).
+
 # b3doc 0.2.0
 
 * `update_frontmatter()` can now handle `.md` files (#20).
