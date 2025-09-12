@@ -1,6 +1,6 @@
 # b3doc (development version)
 
-* The `replace` argument of `update_frontmatter()` does now not support regular expressions anymore (#25).
+* `update_frontmatter()`'s `replace` argument no longer supports regex, avoiding the use of escape characters and unintended broad changes (#25).
 
 # b3doc 0.2.0
 
