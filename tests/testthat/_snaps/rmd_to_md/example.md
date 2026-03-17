@@ -97,7 +97,7 @@ legend("topright", legend = levels(rosa$Species),
        col = 1:3, pch = 19, title = "Species")
 ```
 
-![](/software/example/example-unnamed-chunk-3-1.png)
+<img src="/software/example/example-unnamed-chunk-3-1.png" alt="" width="100%" />
 
 ## Finding the Largest Sepal
 
