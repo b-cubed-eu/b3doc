@@ -233,6 +233,33 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
   )
 })
 
+test_that("rmd_to_md() does not change the figure width and height when set in the source", {
+  temp_dir <- tempdir()
+  md_dir <- fig_dir <- file.path(temp_dir, "public/software/example")
+  on.exit(unlink(temp_dir, recursive = TRUE))
+
+  rmd_to_md(
+    rmd_file = testthat::test_path("example.Rmd"),
+    md_dir = file.path(temp_dir, "src/content/docs/software/example"),
+    fig_dir = fig_dir,
+    fig_url_dir = "/software/example/"
+  )
+
+  img_standard <- png::readPNG(
+    file.path(fig_dir, "example-fig_standard_proportions-1.png"),
+    info = TRUE
+  )
+  expect_equal(dim(img_standard)[1], 2100) # height = 6 inch x 300 dpi
+  expect_equal(dim(img_standard)[2], 1500) # width = 5 inch x 300 dpi
+
+  img_set <- png::readPNG(
+    file.path(fig_dir, "example-fig_set_proportions-1.png"),
+    info = TRUE
+  )
+  expect_equal(dim(img_set)[1], 1200) # height = 4 inch x 300 dpi
+  expect_equal(dim(img_set)[2], 1800) # width = 6 inch x 300 dpi
+})
+
 test_that("rmd_to_md() resets knitting options to the original settings", {
   temp_dir <- tempdir()
   on.exit(unlink(temp_dir, recursive = TRUE))
