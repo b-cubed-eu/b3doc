@@ -93,8 +93,7 @@ rmd_to_md <- function(rmd_file, md_dir, fig_dir, fig_url_dir, title = NULL,
     fig.path = paste0(md_name, "-"),
     # Captions for figures, "" will keep existing, but not create new ones
     fig.cap = "",
-    dpi       = 144,
-    out.width = "100%"
+    dpi  = 300
   )
 
   # Knit
