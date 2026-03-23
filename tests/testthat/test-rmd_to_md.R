@@ -116,7 +116,10 @@ test_that("rmd_to_md() writes .md and figures to the expected directories", {
   # Figures
   expect_identical(
     list.files(expected_fig_dir),
-    c("example-unnamed-chunk-3-1.png")
+    c(
+      "example-fig_set_proportions-1.png",
+      "example-fig_standard_proportions-1.png"
+      )
   )
 })
 
@@ -168,7 +171,6 @@ test_that("rmd_to_md() writes the expected Markdown, including custom
       "iris" = "rosa",
       "^## Wrong title" = "## Finding the Largest Sepal",
       "^## Conclusion" = "## Since regex is not supported, I should not appear"
-
     )
   )
 
