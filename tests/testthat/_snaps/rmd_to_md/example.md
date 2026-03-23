@@ -9,6 +9,8 @@ sidebar:
   order: 2
 ---
 
+
+
 <img src="https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png" align="right" height="139" alt="Rmarkdown logo" /></a>
 
 ## Let's start!
@@ -97,7 +99,12 @@ legend("topright", legend = levels(rosa$Species),
        col = 1:3, pch = 19, title = "Species")
 ```
 
-<img src="/software/example/example-unnamed-chunk-3-1.png" alt="" width="100%" />
+![](/software/example/example-fig_standard_proportions-1.png)
+
+Let's plot the figure with different proportions:
+
+![](/software/example/example-fig_set_proportions-1.png)
+
 
 ## Finding the Largest Sepal
 
