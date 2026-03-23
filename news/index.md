@@ -2,6 +2,8 @@
 
 ## b3doc (development version)
 
+## b3doc 0.3.0
+
 - [`update_frontmatter()`](https://b-cubed-eu.github.io/b3doc/reference/update_frontmatter.md)’s
   `replace` argument no longer supports regex, avoiding the use of
   escape characters and unintended broad changes
