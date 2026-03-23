@@ -1,6 +1,7 @@
 # b3doc (development version)
 
 * `update_frontmatter()`'s `replace` argument no longer supports regex, avoiding the use of escape characters and unintended broad changes (#25).
+* Figures now have a standard DPI of 300, to improve figure quality (#30).
 
 # b3doc 0.2.0
 
