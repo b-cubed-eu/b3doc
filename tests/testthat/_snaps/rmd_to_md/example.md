@@ -9,7 +9,16 @@ sidebar:
   order: 2
 ---
 
+
+
 <img src="https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png" align="right" height="139" alt="Rmarkdown logo" /></a>
+
+
+
+``` r
+# Load packages
+library(ggplot2)
+```
 
 ## Let's start!
 
@@ -78,26 +87,29 @@ summary(rosa)
 ## 
 ```
 
-## Visualization: Sepal Length vs. Sepal Width
+## Visualization: Sepal length vs. sepal width
 
 We can visualize the relationship between sepal length and sepal width for the three species of rosa flowers.
 
 
 ``` r
-# Scatterplot of Sepal Length vs. Sepal Width
-plot(rosa$Sepal.Length, rosa$Sepal.Width,
-     col = as.numeric(rosa$Species),
-     pch = 19,
-     main = "Sepal Length vs Sepal Width",
-     xlab = "Sepal Length (cm)",
-     ylab = "Sepal Width (cm)")
-
-# Add a legend
-legend("topright", legend = levels(rosa$Species),
-       col = 1:3, pch = 19, title = "Species")
+(fig <- ggplot(rosa, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(shape = 19, size = 2) +
+  labs(
+    title = "Sepal length vs sepal width",
+    x = "Sepal length (cm)",
+    y = "Sepal width (cm)",
+    color = "Species"
+  ) +
+  theme_minimal())
 ```
 
-![](/software/example/example-unnamed-chunk-3-1.png)
+![](/software/example/example-fig_standard_proportions-1.png)
+
+Let's plot the figure with different proportions by setting the chunk options:
+
+![](/software/example/example-fig_set_proportions-1.png)
+
 
 ## Finding the Largest Sepal
 
