@@ -35,11 +35,11 @@ To get started, see:
 
 ## Installation
 
-You can install the development version of b3doc from [GitHub](https://github.com/b-cubed-eu/b3doc) with:
+You can install the development version of b3doc from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("b-cubed-eu/b3doc")
+# install.packages("pak")
+pak::pak("b-cubed-eu/b3doc")
 ```
 
 ## Usage
