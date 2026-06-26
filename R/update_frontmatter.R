@@ -11,7 +11,7 @@
 #' @param replace Named character vector with `c("key" = "value")` pairs.
 #'   All occurrences of `"key"` in the content of the Markdown file will be
 #'   replaced by their respective `"value"` (before updating the front matter).
-#' @return Markdown file with updated front matter (and optionally content),
+#' @returns Markdown file with updated front matter (and optionally content),
 #'   written to disk.
 #' @examples
 #' \dontrun{
