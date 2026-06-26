@@ -5,15 +5,14 @@
 #' The date this function is called upon is added to the beginning of the
 #' Markdown file.
 #'
+#' @inheritParams update_frontmatter
 #' @param md_dir Path to local directory to write the Markdown file to.
 #'   If it doesn't exist it will be created.
 #' @param fig_dir Path to local directory to write the figures to.
 #' @param fig_url_dir Link prefix that will be used to refer to figures in
 #'   Markdown output.
-#' @inheritParams update_frontmatter
-#' @return Markdown file and figures written do disk.
+#' @returns Markdown file and figures written do disk.
 #' @export
-#'
 #' @examples
 #' \dontrun{
 #' # First check and install (or update) packages loaded in the Rmd file
