@@ -34,11 +34,11 @@ To get started, see:
 ## Installation
 
 You can install the development version of b3doc from
-[GitHub](https://github.com/b-cubed-eu/b3doc) with:
+[GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("b-cubed-eu/b3doc")
+# install.packages("pak")
+pak::pak("b-cubed-eu/b3doc")
 ```
 
 ## Usage
@@ -79,16 +79,13 @@ provided (such as `sidebar_label`).
 
 ## Meta
 
-- We welcome
-  [contributions](https://b-cubed-eu.github.io/b3doc/CONTRIBUTING.html)
-  including bug reports.
+- We welcome [contributions](.github/CONTRIBUTING.md) including bug
+  reports.
 - License: MIT
-- Get [citation
-  information](https://b-cubed-eu.github.io/b3doc/authors.html#citation)
-  for b3doc in R doing `citation("b3doc")`.
+- Get citation information for b3doc in R with `citation("b3doc")`.
 - Please note that this project is released with a [Contributor Code of
-  Conduct](https://b-cubed-eu.github.io/b3doc/CODE_OF_CONDUCT.html). By
-  participating in this project you agree to abide by its terms.
+  Conduct](.github/CODE_OF_CONDUCT.md). By participating in this project
+  you agree to abide by its terms.
 
 ## Acknowledgments
 
