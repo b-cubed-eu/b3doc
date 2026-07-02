@@ -2,13 +2,13 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "b3doc" in publications use:'
 type: software
 license: MIT
 title: 'b3doc: Tools for the B-Cubed Documentation Website'
-version: 0.2.0
+version: 0.3.0
 abstract: Create Markdown pages for the B-Cubed documentation website (<https://docs.b-cubed.eu>)
   from external R Markdown files, such as vignettes.
 authors:
@@ -34,7 +34,7 @@ authors:
   affiliation: Research Institute for Nature and Forest (INBO)
 repository-code: https://github.com/b-cubed-eu/b3doc
 url: https://b-cubed-eu.github.io/b3doc/
-date-released: '2025-08-20'
+date-released: '2026-03-23'
 contact:
 - family-names: Govaert
   given-names: Sanne
@@ -55,7 +55,7 @@ references:
   - family-names: Csárdi
     given-names: Gábor
     email: gabor@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.cli
 - type: software
   title: fs
@@ -68,11 +68,9 @@ references:
     given-names: Jim
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@posit.co
   - family-names: Csárdi
     given-names: Gábor
-    email: csardi.gabor@gmail.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.fs
 - type: software
   title: knitr
@@ -85,7 +83,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: R.utils
@@ -97,7 +95,7 @@ references:
   - family-names: Bengtsson
     given-names: Henrik
     email: henrikb@braju.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.R.utils
 - type: software
   title: stringr
@@ -109,7 +107,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.stringr
 - type: software
   title: utils
@@ -120,42 +118,19 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: yaml
   abstract: 'yaml: Methods to Convert R Data to YAML and Back'
   notes: Imports
-  url: https://github.com/vubiostat/r-yaml/
+  url: https://yaml.r-lib.org
   repository: https://CRAN.R-project.org/package=yaml
   authors:
-  - family-names: Garbett
-    given-names: Shawn P
   - family-names: Stephens
     given-names: Jeremy
   - family-names: Simonov
     given-names: Kirill
-  - family-names: Xie
-    given-names: Yihui
-  - family-names: Dong
-    given-names: Zhuoer
-  - family-names: Wickham
-    given-names: Hadley
-  - family-names: Horner
-    given-names: Jeffrey
-  - name: reikoch
-  - family-names: Beasley
-    given-names: Will
-  - family-names: O'Connor
-    given-names: Brendan
-  - family-names: Warnes
-    given-names: Gregory R.
-  - family-names: Quinn
-    given-names: Michael
-  - family-names: Kamvar
-    given-names: Zhian N.
-  - family-names: Gao
-    given-names: Charlie
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.yaml
 - type: software
   title: curl
@@ -168,8 +143,48 @@ references:
     given-names: Jeroen
     email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.curl
+- type: software
+  title: ggplot2
+  abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  notes: Suggests
+  url: https://ggplot2.tidyverse.org
+  repository: https://CRAN.R-project.org/package=ggplot2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  - family-names: Brand
+    given-names: Teun
+    name-particle: van den
+    orcid: https://orcid.org/0000-0002-9335-7468
+  year: '2026'
+  doi: 10.32614/CRAN.package.ggplot2
 - type: software
   title: here
   abstract: 'here: A Simpler Way to Find Your Files'
@@ -179,10 +194,23 @@ references:
   authors:
   - family-names: Müller
     given-names: Kirill
-    email: krlmlr+r@mailbox.org
+    email: kirill@cynkra.com
     orcid: https://orcid.org/0000-0002-1416-3412
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.here
+- type: software
+  title: png
+  abstract: 'png: Read and write PNG images'
+  notes: Suggests
+  url: https://www.rforge.net/png/
+  repository: https://CRAN.R-project.org/package=png
+  authors:
+  - family-names: Urbanek
+    given-names: Simon
+    email: Simon.Urbanek@r-project.org
+    orcid: https://orcid.org/0000-0003-2297-1732
+  year: '2026'
+  doi: 10.32614/CRAN.package.png
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -225,7 +253,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: testthat
@@ -237,7 +265,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
 
